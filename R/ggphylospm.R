@@ -12,7 +12,6 @@
 #'
 #' @export
 
-### 参数列表
 ggphylopsm <- function(tr, traits = NULL, ...)
 {
 
@@ -32,15 +31,15 @@ ggphylopsm <- function(tr, traits = NULL, ...)
     n = n + 1
     if (i == j) {
       plst[[n]] <- ggtree(ftrd, mapping = aes_string(color = paste("V", i, sep = "")), 
-                          continuous = "color", size = 2) + ## size参数  
+                          continuous = "color", size = 2) + 
                     theme(legend.position = "none",
                           axis.line = element_line(color = "black")) +
-                    scale_color_gradientn(colors=c("red", 'orange', 'green', 'cyan', 'blue')) ##颜色参数
+                    scale_color_gradientn(colors=c("red", 'orange', 'green', 'cyan', 'blue'))
       }
     else {
       suppressMessages(plst[[n]] <- ggtreeSpace(tr, traits[,c(i, j)]) + geom_tippoint() + coord_cartesian())
     }
   }
     GGally::ggmatrix(plst,
-                     nc, nc) ###参数
+                     nc, nc)
 }
