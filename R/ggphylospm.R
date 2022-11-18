@@ -1,22 +1,37 @@
-#' @title Plot phylogenetic scatterplot matrix
+#' Plot phylogenetic scatterplot matrix
 #'
-#' @description This function plot phylogenetic scatterplot matrix
-#' @param tr tree
-#' @param traits tipdata containig tip coordinates
-#' @param mapping aesthetic mapping
-#' @return phylomorphospace plot
-#' @examples
-#' tr <- rtree(15)
-#' traits <- fastBM(tr, nsim = 5)
-#' ggphylopsm(tr, triats)
+#' @param tr 
+#' @param traits 
+#' @param title 
+#' @param xAxisLabels 
+#' @param yAxisLabels 
+#' @param tr.params 
+#' @param sptr.params 
 #'
+#' @return
 #' @export
-
-ggphylopsm <- function(tr, traits = NULL, ...)
+#'
+#' @examples
+ggphylopsm <- function(tr, traits = NULL, title = "Phylogenetic Scatterplot Matrix", 
+                       xAxisLabels = NULL, yAxisLabels = NULL,
+                       tr.params = list(size = 1, colors = NULL),
+                       sptr.params = list(tippoint = TRUE, tiplab = FALSE, labdir = "horizon",
+                                          panel.grid = FALSE))
 {
-
   cat("Preparing phylogenetic scatterplot matrix, please wait....\n")
-    
+  
+  if(is.null(traits))
+    stop("Traits data is required.")
+  
+  if (is.null(tr.params$colors))
+    tr.params$colors <- c("red", 'orange', 'green', 'cyan', 'blue')
+  
+  ## default.tr.params <- 
+  
+  
+  ## default.sptr.params <- 
+
+  
   nc <- ncol(traits)
   colnames(traits) <- c(paste("V", 1:nc, sep = ""))
   trd <- ggtree::fortify(tr)
@@ -31,15 +46,37 @@ ggphylopsm <- function(tr, traits = NULL, ...)
     n = n + 1
     if (i == j) {
       plst[[n]] <- ggtree(ftrd, mapping = aes_string(color = paste("V", i, sep = "")), 
-                          continuous = "color", size = 2) + 
+                          continuous = "color", size = tr.params$size) + 
                     theme(legend.position = "none",
                           axis.line = element_line(color = "black")) +
-                    scale_color_gradientn(colors=c("red", 'orange', 'green', 'cyan', 'blue'))
+                    scale_color_gradientn(colors=tr.params$colors)
       }
     else {
-      suppressMessages(plst[[n]] <- ggtreeSpace(tr, traits[,c(i, j)]) + geom_tippoint() + coord_cartesian())
+      suppressMessages(p <- ggtreeSpace(tr, traits[,c(i, j)]) + coord_cartesian(default = T))
+      
+      if (sptr.params$tippoint){
+        p + geom_tippoint()
+      }
+        
+      
+      if (sptr.params$tiplab){
+        if(sptr.params$labdir == "horizonal")
+          p + geom_tiplab(angle = 0)
+        if(sptr.params$labdir == "radial")
+          p + geom_tiplab()
+      }
+      
+      if (sptr.params$panel.grid){
+        p + theme_bw()
+      }
+      
+      plst[[n]] <- p
     }
   }
     GGally::ggmatrix(plst,
-                     nc, nc)
+                     nc, nc,
+                     title = title, 
+                     xAxisLabels = xAxisLabels, 
+                     yAxisLabels = yAxisLabels,
+                     ) 
 }

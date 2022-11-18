@@ -14,11 +14,17 @@
 #' @export
 ggtreeSpace <- function(tr, tipdata, mapping = NULL, ...){
   
+  c <- colnames(tipdata)
   trd <- make_ts_data(tr, tipdata)
 
-  p <- ggtree(trd, mapping = mapping, layout = 'equal_angle', ...) +
-        theme_bw()
-
+  p <- ggtree(trd, 
+              mapping = mapping, 
+              layout = 'equal_angle', 
+              ...) +
+        theme_treeSpace() +
+        labs(x = c[1],
+             y = c[2])
+        
   class(p) <- c("ggtreeSpace", class(p))
 
   p
