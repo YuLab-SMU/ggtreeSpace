@@ -12,6 +12,7 @@ ggplot_add.treespace <- function(object, plot, object_name)
   plot
 }
 
+#' @importFrom ggtree geom_tree
 make_ts_layer <- function(tr, tipdata, mapping, ...)
 {
   trd <- make_ts_data(tr, tipdata)
@@ -23,6 +24,8 @@ make_ts_layer <- function(tr, tipdata, mapping, ...)
   layer
 }
 
+#' @importFrom dplyr mutate
+#' @importFrom magrittr %<>% %>%
 make_ts_data <- function(tr, tipdata)
 {
   dat <- cbind(tipdata[, 1], tipdata[, 2])
@@ -31,8 +34,8 @@ make_ts_data <- function(tr, tipdata)
   nodecoords <- rbind(dat, anc)
   
   trd %<>%
-    select(-c(x, y)) %>%
-    mutate(x = nodecoords[,1], 
+    dplyr::select(-c(x, y)) %>%
+    dplyr::mutate(x = nodecoords[,1], 
            y = nodecoords[,2])
 
   trd
