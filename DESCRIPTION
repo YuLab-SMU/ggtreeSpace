@@ -1,5 +1,5 @@
 Package: ggtreeSpace
-Title: What the Package Does (One Line, Title Case)
+Title: Plot phylomorphospaces
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Li",
@@ -11,7 +11,14 @@ Imports:
     ggplot2,
     ggtree,
     GGally,
-    phytools
+    phytools,
+    rlang,
+    magrittr,
+    akima,
+    tidyr,
+    tibble,
+    dplyr,
+    ape
 License: MIT + file LICENSE
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.2
 Encoding: UTF-8
