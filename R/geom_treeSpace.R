@@ -25,18 +25,15 @@ geom_treeSpace <- function(tr, tipdata, mapping = NULL, ...)
 }
 
 
-
-
 #' @method ggplot_add treespace
 #' @export
+
 ggplot_add.treespace <- function(object, plot, object_name)
 {
   st_layer <- do.call(make_ts_layer, object)
   plot$layers <- append(plot$layers, st_layer)
   plot
 }
-
-
 
 
 #' @importFrom ggtree geom_tree
@@ -50,8 +47,6 @@ make_ts_layer <- function(tr, tipdata, mapping, ...)
                      )
   layer
 }
-
-
 
 
 #' @importFrom ggtree fortify

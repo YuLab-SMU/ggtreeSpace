@@ -2,7 +2,7 @@
 #'
 #' @param trait column name of the trait
 #' @param resolution resolution of the heatmap
-#' @param bins number of contour bins. Overridden by breaks.
+#' @param bins number of contour bins.
 #' @param ... additional parameters
 #'
 #' @return ggplot object
@@ -18,6 +18,7 @@ geom_tsheatmap <- function(trait, resolution = 0.001, bins = 24, ...){
 }
 
 
+
 #' @method ggplot_add tsheatmap
 #' @export
 ggplot_add.tsheatmap <- function(object, plot, object_name){
@@ -27,6 +28,7 @@ ggplot_add.tsheatmap <- function(object, plot, object_name){
   plot$layers <- append(plot$layers, hm_layer)
   plot
 }
+
 
 
 #' @importFrom ggplot2 geom_contour_filled

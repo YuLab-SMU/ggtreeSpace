@@ -24,7 +24,6 @@ This function plot phylomorphospace
 \examples{
 library(ggtree)
 library(phytools)
-
 tr <- rtree(15)
 td <- fastBM(tr, nsim = 2)
 ggtreeSpace(tr, td) +

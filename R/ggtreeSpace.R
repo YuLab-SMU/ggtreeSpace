@@ -10,8 +10,8 @@
 #' @importFrom ggplot2 labs
 #' @examples
 #' library(ggtree)
+#' library(ggplot2)
 #' library(phytools)
-#' 
 #' tr <- rtree(15)
 #' td <- fastBM(tr, nsim = 2)
 #' ggtreeSpace(tr, td) +
