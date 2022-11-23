@@ -8,10 +8,11 @@
 #' @return ggtreeSpace object
 #' @importFrom ggtree ggtree
 #' @importFrom ggplot2 labs
+#' @importFrom ggplot2 coord_cartesian
 #' @examples
 #' library(ggtree)
-#' library(ggplot2)
 #' library(phytools)
+#' 
 #' tr <- rtree(15)
 #' td <- fastBM(tr, nsim = 2)
 #' ggtreeSpace(tr, td) +
@@ -30,6 +31,8 @@ ggtreeSpace <- function(tr, tipdata, mapping = NULL, ...){
         theme_treeSpace() +
         labs(x = c[1],
              y = c[2])
+  
+  suppressMessages(p <- p + coord_cartesian())
         
   class(p) <- c("ggtreeSpace", class(p))
 

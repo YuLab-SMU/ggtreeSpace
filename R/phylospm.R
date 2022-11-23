@@ -73,7 +73,7 @@ phylospm <- function(tr, traits = NULL, title = "Phylogenetic Scatterplot Matrix
                                    continuous = "color", size = new.tr.params$size) + 
                               scale_color_gradientn(colors = new.tr.params$colors) +
                               coord_cartesian(default = T) +
-                              theme_treeSpace())
+                              theme_treeSpace2())
       
       suppressMessages(p <- p + coordtrans(p, traits[,i]))
       
@@ -84,8 +84,8 @@ phylospm <- function(tr, traits = NULL, title = "Phylogenetic Scatterplot Matrix
       
       }
     else {
-      suppressMessages(p <- ggtreeSpace(tr, traits[,c(j, i)]) + 
-                              coord_cartesian(default = T))
+      p <- ggtreeSpace(tr, traits[,c(j, i)]) +
+            theme_treeSpace2()
       
       p <- lim_set(p, traits[,c(j, i)])
       

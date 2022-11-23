@@ -11,7 +11,7 @@ geom_tsheatmap(trait, resolution = 0.001, bins = 24, ...)
 
 \item{resolution}{resolution of the heatmap}
 
-\item{bins}{number of contour bins. Overridden by breaks.}
+\item{bins}{number of contour bins.}
 
 \item{...}{additional parameters}
 }
