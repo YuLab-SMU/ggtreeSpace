@@ -4,8 +4,15 @@
 #' @param tr tree
 #' @param tipdata tipdata containig tip coordinates
 #' @param mapping aesthetic mapping
-#' @return phylomorphospace plot
+#' @param ... additional parameters
+#' @return ggtreeSpace object
+#' @importFrom ggtree ggtree
+#' @importFrom ggplot2 labs
+#' @importFrom ggplot2 coord_cartesian
 #' @examples
+#' library(ggtree)
+#' library(phytools)
+#' 
 #' tr <- rtree(15)
 #' td <- fastBM(tr, nsim = 2)
 #' ggtreeSpace(tr, td) +
@@ -13,26 +20,22 @@
 #'
 #' @export
 ggtreeSpace <- function(tr, tipdata, mapping = NULL, ...){
+  
+  c <- colnames(tipdata)
+  trd <- make_ts_data(tr, tipdata)
 
-  dat <- cbind(tipdata[, 1], tipdata[, 2])
-
-  trd <- ggtree::fortify(tr)
-
-  xanc <- phytools::fastAnc(as.phylo(tr),dat[,1])
-  yanc <- phytools::fastAnc(as.phylo(tr),dat[,2])
-
-  nodecoords <- tibble(x = c(dat[,1], xanc),
-                       y = c(dat[,2], yanc),
-                       node = 1:length(trd$node)
-  )
-
-  trd %<>%
-    select(-c(x, y)) %>%
-    left_join(nodecoords, c("node" = "node"))
-
-  p <- ggtree(trd, mapping = mapping, layout = 'equal_angle', ...)
-
-  class(p) <- c("spacetree", class(p))
+  p <- ggtree(trd, 
+              mapping = mapping, 
+              layout = 'equal_angle', 
+              ...) +
+        theme_treeSpace() +
+        labs(x = c[1],
+             y = c[2])
+  
+  suppressMessages(p <- p + coord_cartesian())
+        
+  class(p) <- c("ggtreeSpace", class(p))
 
   p
 }
+

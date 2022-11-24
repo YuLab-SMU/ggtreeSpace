@@ -12,14 +12,19 @@ ggtreeSpace(tr, tipdata, mapping = NULL, ...)
 \item{tipdata}{tipdata containig tip coordinates}
 
 \item{mapping}{aesthetic mapping}
+
+\item{...}{additional parameters}
 }
 \value{
-phylomorphospace plot
+ggtreeSpace object
 }
 \description{
 This function plot phylomorphospace
 }
 \examples{
+library(ggtree)
+library(phytools)
+
 tr <- rtree(15)
 td <- fastBM(tr, nsim = 2)
 ggtreeSpace(tr, td) +
