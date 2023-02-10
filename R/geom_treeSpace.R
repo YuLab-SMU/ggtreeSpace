@@ -57,7 +57,6 @@ make_ts_layer <- function(tr, tipdata, mapping, ...)
 #' @importFrom ggtree fortify
 #' @importFrom phytools fastAnc
 #' @importFrom ape as.phylo
-#' @importFrom magrittr %<>%
 #' @importFrom dplyr mutate
 make_ts_data <- function(tr, tipdata)
 {
@@ -66,8 +65,8 @@ make_ts_data <- function(tr, tipdata)
   anc <- apply(dat, 2, fastAnc, tree = as.phylo(tr))
   nodecoords <- rbind(dat, anc)
   
-  trd %<>%
-    select(-c(x, y)) %>%
+  trd <- trd |>
+    select(-c(x, y)) |>
     mutate(x = nodecoords[,1], 
            y = nodecoords[,2])
 

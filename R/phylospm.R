@@ -61,7 +61,7 @@ phylospm <- function(tr, traits = NULL, title = "Phylogenetic Scatterplot Matrix
   trd <- ggtree::fortify(tr)
   anc <- apply(traits, 2, fastAnc, tree = tr)
   
-  ftrd <- trd %>%
+  ftrd <- trd |>
           cbind(rbind(traits, anc))
   
   plst <- list()

@@ -7,8 +7,6 @@
 #'
 #' @return ggplot object
 #' @export
-#'
-#' @examples
 geom_tsheatmap <- function(trait, resolution = 0.001, bins = 24, ...){
   structure(list(trait = trait, 
                  resolution = resolution, 
@@ -46,14 +44,14 @@ make_hm_layer <- function(data, trait, resolution, bins, ...){
 
 
 
-#' @importFrom magrittr %>%
+
 #' @importFrom dplyr select
 #' @importFrom dplyr filter
 #' @importFrom tibble rownames_to_column
 #' @importFrom tidyr pivot_longer
 make_hm_data <- function(data, trait, resolution){
-   s <- data %>%
-         select(x = "x",  y = "y", z=!!rlang::sym(trait)) %>%
+   s <- data |>
+         select(x = "x",  y = "y", z=!!rlang::sym(trait)) |>
          filter(!is.na(z))
    
    coords <- akima::interp(x = s$x, 
@@ -66,7 +64,7 @@ make_hm_data <- function(data, trait, resolution){
    rownames(dz) <- coords$x
    colnames(dz) <- coords$y
    dz <- rownames_to_column(dz, var = "x")
-   df <- dz %>% 
+   df <- dz |> 
          pivot_longer(-1, names_to = "y",values_to = "z")
    df$x <- as.double(df$x)
    df$y <- as.double(df$y)

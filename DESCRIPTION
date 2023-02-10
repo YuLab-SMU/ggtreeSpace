@@ -1,6 +1,6 @@
 Package: ggtreeSpace
 Title: Plot phylomorphospaces
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     person(given = "Li",
            family = "Lin",
@@ -13,13 +13,11 @@ Imports:
     GGally,
     phytools,
     rlang,
-    magrittr,
     akima,
     tidyr,
     tibble,
     dplyr,
     ape
 License: MIT + file LICENSE
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Encoding: UTF-8
-
