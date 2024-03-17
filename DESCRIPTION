@@ -1,12 +1,12 @@
 Package: ggtreeSpace
-Title: Plot phylomorphospaces
+Title: A phylomorphospace visualization tool
 Version: 0.0.0.9001
 Authors@R: 
     person(given = "Li",
            family = "Lin",
            role = c("aut", "cre"),
            email = "williamlee2220@gmail.com")
-Description: What the package does (one paragraph).
+Description: Plot phylomorphospaces.
 Imports: 
     ggplot2,
     ggtree,
