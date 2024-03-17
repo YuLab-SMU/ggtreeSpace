@@ -50,9 +50,9 @@ make_hm_layer <- function(data, trait, resolution, bins, ...){
 #' @importFrom tibble rownames_to_column
 #' @importFrom tidyr pivot_longer
 make_hm_data <- function(data, trait, resolution){
-   s <- data |>
-         select(x = "x",  y = "y", z=!!rlang::sym(trait)) |>
-         filter(!is.na(z))
+   s <- data  |> 
+        na.omit() |> 
+        select(x = "x",  y = "y", z=!!rlang::sym(trait))
    
    coords <- akima::interp(x = s$x, 
                            y = s$y, 
