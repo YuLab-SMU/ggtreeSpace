@@ -2,7 +2,18 @@
 title: "ggtreeSpace"
 author: "Lin Li and Guangchuang Yu"
 date: "`r Sys.Date()`"
-output: html_document
+output:
+  prettydoc::html_pretty:
+    toc: true
+    theme: cayman
+    highlight: vignette
+  pdf_document:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Introduction to ggtreeSpace}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r setup, include=FALSE}
@@ -37,8 +48,8 @@ suppressPackageStartupMessages(library(phytools))
 suppressPackageStartupMessages(library(ggplot2))
 tr1 <- rtree(15)
 td1 <- fastBM(tr1, nsim = 2)
-ggplot2(t1r, td1) +
-  geom_treeSpace()
+ggplot() +
+  geom_treeSpace(tr1, td1)
 ```
 
 
@@ -56,5 +67,4 @@ p <- ggtreeSpace(tr2, td2)
 p %<+% tdex2 +
   geom_tippoint() +
   geom_tsheatmap(trait = "z", alpha = 0.7 ,resolution = 0.01, bin = 12)
-p
 ```
