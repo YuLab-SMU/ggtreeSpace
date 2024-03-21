@@ -7,7 +7,7 @@
 phylospm(
   tr,
   traits = NULL,
-  title = "Phylogenetic Scatterplot Matrix",
+  title = NULL,
   xAxisLabels = NULL,
   yAxisLabels = NULL,
   tr.params = list(size = 1, colors = NULL, panel.grid = TRUE),
@@ -26,7 +26,8 @@ phylospm(
 
 \item{yAxisLabels}{Set the lable of the y axis}
 
-\item{tr.params}{List of parameters to customize the phylogenetic tree with continuous trait mapping as continuous colors on the branch}
+\item{tr.params}{List of parameters to customize the phylogenetic tree 
+with continuous trait mapping as continuous colors on the branch}
 
 \item{sptr.params}{List of parameters to customize the phylomorphospaces}
 }
