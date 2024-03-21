@@ -6,7 +6,11 @@ Authors@R:
            family = "Lin",
            role = c("aut", "cre"),
            email = "williamlee2220@gmail.com")
-Description: Easily plot phylomorphospace.
+Description: This package is a comprihensive visualization tool specifically designed for 
+              exploring phylomorphospace. It not only simplifies the process of 
+              generating phylomorphospace but also enhances it 
+              with the capability to add graphic layers to the plot with
+              grammar of graphics to create fully annotated phylomorphospaces.
 Imports: 
     ggplot2,
     ggtree,
