@@ -1,5 +1,5 @@
 Package: ggtreeSpace
-Title: Plot phylomorphospaces
+Title: Visualizing Phylomorphospaces using 'ggtree'
 Version: 0.99.0
 Authors@R: c(
        person("Guangchuang", "Yu", 
