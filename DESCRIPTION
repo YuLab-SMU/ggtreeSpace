@@ -1,23 +1,34 @@
 Package: ggtreeSpace
 Title: Plot phylomorphospaces
 Version: 0.0.2
-Authors@R: 
-    person(given = "Li",
-           family = "Lin",
-           role = c("aut", "cre"),
-           email = "williamlee2220@gmail.com")
+Authors@R: c(
+       person("Guangchuang", "Yu", 
+              email = "guangchuangyu@gmail.com", 
+              role = c("aut", "cre", "cph"), 
+              comment = c(ORCID = "0000-0002-6485-8781")
+       ),
+        person(given = "Li", family = "Lin",
+              email = "williamlee2220@gmail.com",
+              role = c("aut", "cre")
+       )
+  )
+
 Description: Easily plot phylomorphospace.
 Imports: 
+    akima,
+    ape,
+    dplyr,
+    GGally,
     ggplot2,
     ggtree,
-    GGally,
     phytools,
     rlang,
-    akima,
-    tidyr,
     tibble,
-    dplyr,
-    ape
+    tidyr
+Suggests:
+    knitr,
+    prettydoc,
+    rmarkdown
 License: MIT + file LICENSE
 biocViews: Annotation, Visualization, Phylogenetics, Software
 RoxygenNote: 7.3.1
