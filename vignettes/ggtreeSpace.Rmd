@@ -68,3 +68,12 @@ p %<+% tdex2 +
   geom_tippoint() +
   geom_tsheatmap(trait = "z", alpha = 0.7 ,resolution = 0.01, bin = 12)
 ```
+
+
+# Session information
+
+Here is the output of `sessionInfo()` on the system on which this document was compiled:
+
+```{r, echo=FALSE}
+sessionInfo()
+```

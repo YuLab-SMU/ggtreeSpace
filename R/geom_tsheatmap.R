@@ -29,18 +29,6 @@ geom_tsheatmap <- function(trait, resolution = 0.001, bins = 24, ...){
 
 
 
-#' @method ggplot_add tsheatmap
-#' @export
-ggplot_add.tsheatmap <- function(object, plot, object_name){
-  l <- list(data = plot$data)
-  object <- c(l, object)
-  hm_layer <- do.call(make_hm_layer, object)
-  plot$layers <- append(plot$layers, hm_layer)
-  plot
-}
-
-
-
 #' @importFrom ggplot2 geom_contour_filled
 #' @importFrom ggplot2 aes
 #' @importFrom ggplot2 after_stat

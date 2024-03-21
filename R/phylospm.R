@@ -36,8 +36,7 @@ phylospm <- function(tr, traits = NULL, title = NULL,
                      sptr.params = list(tippoint = TRUE, 
                                         tiplab = FALSE, 
                                         labdir = "horizonal",
-                                        panel.grid = TRUE))
-{
+                                        panel.grid = TRUE)) {
   options(warn = -1)
   
   cat("Preparing phylogenetic scatterplot matrix, please wait...\n")
@@ -65,7 +64,7 @@ phylospm <- function(tr, traits = NULL, title = NULL,
   
   
   nc <- ncol(traits)
-  colnames(traits) <- c(paste("V", 1:nc, sep = ""))
+  colnames(traits) <- c(paste("V", seq_len(nc), sep = ""))
   trd <- ggtree::fortify(tr)
   anc <- apply(traits, 2, fastAnc, tree = tr)
   
@@ -74,49 +73,49 @@ phylospm <- function(tr, traits = NULL, title = NULL,
   
   plst <- list()
   n <-  0
-  for (i in 1:nc) for (j in 1:nc){
-    n <-  n + 1
-    if (i == j) {
-      suppressMessages(
-        p <- ggtree(ftrd, 
-                    mapping = aes_string(color = paste("V", i, sep = "")), 
-                    continuous = "color", size = new.tr.params$size) + 
-                    scale_color_gradientn(colors = new.tr.params$colors) +
-                    coord_cartesian(default = TRUE) +
-                    theme_treeSpace2()
-        )
-      
-      suppressMessages(p <- p + coordtrans(p, traits[,i]))
-      
-      if (new.tr.params$panel.grid){
-        p <- p + theme_bw()
-      }
-      plst[[n]] <- p
-      
-      }
-    else {
-      p <- ggtreeSpace(tr, traits[,c(j, i)]) +
-            theme_treeSpace2()
-      
-      p <- lim_set(p, traits[,c(j, i)])
-      
-      if (new.sptr.params$tippoint){
-        p <- p + geom_tippoint()
-      }
+  for (i in seq_len(nc)) {
+    for (j in seq_len(nc)) {
+      n <-  n + 1
+      if (i == j) {
+        suppressMessages(
+          p <- ggtree(ftrd, 
+                      mapping = aes_string(color = paste("V", i, sep = "")), 
+                      continuous = "color", size = new.tr.params$size) + 
+                      scale_color_gradientn(colors = new.tr.params$colors) +
+                      coord_cartesian(default = TRUE) +
+                      theme_treeSpace2()
+          )
         
-      if (new.sptr.params$panel.grid){
-        p <- p + theme_bw()
-      }
-      
-      if (new.sptr.params$tiplab){
-        if(new.sptr.params$labdir == "horizonal")
-            p <- p + geom_tiplab(angle = 0)
-        if(new.sptr.params$labdir == "radial")
-            p <- p + geom_tiplab()
-      }
-      
+        suppressMessages(p <- p + coordtrans(p, traits[,i]))
+        
+        if (new.tr.params$panel.grid){
+          p <- p + theme_bw()
+        }
+        plst[[n]] <- p  
+      } else {
+        p <- ggtreeSpace(tr, traits[,c(j, i)]) +
+              theme_treeSpace2()
+        
+        p <- lim_set(p, traits[,c(j, i)])
+        
+        if (new.sptr.params$tippoint){
+          p <- p + geom_tippoint()
+        }
+          
+        if (new.sptr.params$panel.grid){
+          p <- p + theme_bw()
+        }
+        
+        if (new.sptr.params$tiplab){
+          if(new.sptr.params$labdir == "horizonal")
+              p <- p + geom_tiplab(angle = 0)
+          if(new.sptr.params$labdir == "radial")
+              p <- p + geom_tiplab()
+        }
+        
 
-      plst[[n]] <- p
+        plst[[n]] <- p
+      }
     }
   }
 
