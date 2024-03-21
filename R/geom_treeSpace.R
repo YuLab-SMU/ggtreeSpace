@@ -68,7 +68,8 @@ make_ts_data <- function(tr, tipdata)
   trd <- trd |>
     select(-c(x, y)) |>
     mutate(x = nodecoords[,1], 
-           y = nodecoords[,2])
+           y = nodecoords[,2]) |>
+    recal_bl()
 
   trd
 }

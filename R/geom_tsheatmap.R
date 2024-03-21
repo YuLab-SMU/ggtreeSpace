@@ -6,6 +6,18 @@
 #' @param ... additional parameters
 #'
 #' @return ggplot object
+#' @examples
+#'library(ggtree)
+#'library(phytools)
+
+#'tr <- rtree(15)
+#'td <- fastBM(tr, nsim = 2, bounds = c(0, Inf))
+#'tdex <- data.frame(z = fastBM(tr, nsim = 1),
+#'                   node = 1:15)
+#'p <- ggtreeSpace(tr, td)
+#'p %<+% tdex +
+#'  geom_tippoint() +
+#'  geom_tsheatmap(trait = "z", alpha = 0.7 ,resolution = 0.01, bin = 12)
 #' @export
 geom_tsheatmap <- function(trait, resolution = 0.001, bins = 24, ...){
   structure(list(trait = trait, 
@@ -35,7 +47,8 @@ ggplot_add.tsheatmap <- function(object, plot, object_name){
 make_hm_layer <- function(data, trait, resolution, bins, ...){
   hmdata <- make_hm_data(data, trait, resolution)
   layer <- geom_contour_filled(data = hmdata,
-                     mapping = aes(x = x, y = y, z = z, fill = after_stat(level)),
+                     mapping = aes(x = x, y = y, z = z, 
+                                   fill = after_stat(level)),
                      bins = bins,
                      ...
                      )

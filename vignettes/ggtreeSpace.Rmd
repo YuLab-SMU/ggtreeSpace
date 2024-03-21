@@ -1,0 +1,70 @@
+---
+title: "ggtreeSpace"
+author: "Lin Li and Guangchuang Yu"
+date: "`r Sys.Date()`"
+output:
+  prettydoc::html_pretty:
+    toc: true
+    theme: cayman
+    highlight: vignette
+  pdf_document:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Introduction to ggtreeSpace}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(warn = -1)
+```
+
+## Introduction
+
+`ggtreeSpace` is a comprehensive visualization tool design to plot phylomorphospace with the grammar of graphics.
+
+## Function
+
+You can plot phylomorphospace easily with ggtreeSpace fuction:
+
+```{r pressure, echo=TRUE}
+suppressPackageStartupMessages(library(ggtree))
+suppressPackageStartupMessages(library(ggtreeSpace))
+suppressPackageStartupMessages(library(phytools))
+tr <- rtree(15)
+td <- fastBM(tr, nsim = 2)
+ggtreeSpace(tr, td) +
+  geom_tippoint()
+```
+
+ggtreeSpace supports adding phylomorphospace as a graphic layer.
+
+```{r example1, echo=TRUE}
+suppressPackageStartupMessages(library(ggtree))
+suppressPackageStartupMessages(library(ggtreeSpace))
+suppressPackageStartupMessages(library(phytools))
+suppressPackageStartupMessages(library(ggplot2))
+tr1 <- rtree(15)
+td1 <- fastBM(tr1, nsim = 2)
+ggplot() +
+  geom_treeSpace(tr1, td1)
+```
+
+
+You can add an additional layer of heatmap base on your data.
+```{r example2, echo=TRUE}
+suppressPackageStartupMessages(library(ggtree))
+suppressPackageStartupMessages(library(ggtreeSpace))
+suppressPackageStartupMessages(library(phytools))
+
+tr2 <- rtree(15)
+td2 <- fastBM(tr2, nsim = 2, bounds = c(0, Inf))
+tdex2 <- data.frame(z = fastBM(tr2, nsim = 1),
+                   node = 1:15)
+p <- ggtreeSpace(tr2, td2)
+p %<+% tdex2 +
+  geom_tippoint() +
+  geom_tsheatmap(trait = "z", alpha = 0.7 ,resolution = 0.01, bin = 12)
+```

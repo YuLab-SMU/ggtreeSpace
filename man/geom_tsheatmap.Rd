@@ -21,3 +21,15 @@ ggplot object
 \description{
 Add a layer of heatmap with a tip data using akima interpolation
 }
+\examples{
+library(ggtree)
+library(phytools)
+tr <- rtree(15)
+td <- fastBM(tr, nsim = 2, bounds = c(0, Inf))
+tdex <- data.frame(z = fastBM(tr, nsim = 1),
+                  node = 1:15)
+p <- ggtreeSpace(tr, td)
+p \%<+\% tdex +
+ geom_tippoint() +
+ geom_tsheatmap(trait = "z", alpha = 0.7 ,resolution = 0.01, bin = 12)
+}

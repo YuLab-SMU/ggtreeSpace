@@ -1,3 +1,15 @@
+recal_bl <- function(data) {
+  for (i in seq_len(nrow(data))) {
+    pnode <- data$parent[i]
+    x_diff <- data$x[i] - data$x[pnode]
+    y_diff <- data$y[i] - data$y[pnode]
+    bl <- sqrt(x_diff^2 + y_diff^2)
+    data$branch.length[i] <- bl
+  }
+  return(data)
+}
+
+
 #' @importFrom ggplot2 xlim
 #' @importFrom ggplot2 ylim
 coordtrans <- function(p, t){
@@ -10,8 +22,10 @@ coordtrans <- function(p, t){
   pd$y <- pd$y - (min(pd$y) - min(t))
   p$data <- pd
   p <- p + 
-    xlim(min(pd$x) - 0.05*(max(pd$x)-min(pd$x)), max(pd$x) + 0.05*(max(pd$x)-min(pd$x))) +
-    ylim(min(pd$y) - 0.05*(max(pd$y)-min(pd$y)), max(pd$y) + 0.05*(max(pd$y)-min(pd$y)))
+    xlim(min(pd$x) - 0.05*(max(pd$x)-min(pd$x)), 
+         max(pd$x) + 0.05*(max(pd$x)-min(pd$x))) +
+    ylim(min(pd$y) - 0.05*(max(pd$y)-min(pd$y)), 
+         max(pd$y) + 0.05*(max(pd$y)-min(pd$y)))
   return(p)
 }
 
@@ -22,8 +36,10 @@ coordtrans <- function(p, t){
 #' @importFrom ggplot2 xlim
 #' @importFrom ggplot2 ylim
 lim_set <- function(p, df){
-  p <- p + xlim(min(df[,1]) - 0.05*(max(df[,1])-min(df[,1])), max(df[,1]) + 0.05*(max(df[,1])-min(df[,1]))) +
-           ylim(min(df[,2]) - 0.05*(max(df[,2])-min(df[,2])), max(df[,2]) + 0.05*(max(df[,2])-min(df[,2])))
+  p <- p + xlim(min(df[,1]) - 0.05*(max(df[,1])-min(df[,1])), 
+                max(df[,1]) + 0.05*(max(df[,1])-min(df[,1]))) +
+           ylim(min(df[,2]) - 0.05*(max(df[,2])-min(df[,2])), 
+                max(df[,2]) + 0.05*(max(df[,2])-min(df[,2])))
   
   p
 }

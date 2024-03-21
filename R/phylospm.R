@@ -5,7 +5,8 @@
 #' @param title Set the title for the phylogenetic scatterplot matrix
 #' @param xAxisLabels Set the lable of the x axis
 #' @param yAxisLabels Set the lable of the y axis
-#' @param tr.params List of parameters to customize the phylogenetic tree with continuous trait mapping as continuous colors on the branch
+#' @param tr.params List of parameters to customize the phylogenetic tree 
+#' with continuous trait mapping as continuous colors on the branch
 #' @param sptr.params List of parameters to customize the phylomorphospaces
 #'
 #' @return phylospm object
@@ -27,11 +28,15 @@
 #' 
 #' phylospm(tr, a)
 #' @export
-phylospm <- function(tr, traits = NULL, title = "Phylogenetic Scatterplot Matrix", 
+phylospm <- function(tr, traits = NULL, title = NULL,
                      xAxisLabels = NULL, yAxisLabels = NULL,
-                     tr.params = list(size = 1, colors = NULL, panel.grid = TRUE),
-                     sptr.params = list(tippoint = TRUE, tiplab = FALSE, labdir = "horizonal",
-                                          panel.grid = TRUE))
+                     tr.params = list(size = 1, 
+                                      colors = NULL, 
+                                      panel.grid = TRUE),
+                     sptr.params = list(tippoint = TRUE, 
+                                        tiplab = FALSE, 
+                                        labdir = "horizonal",
+                                        panel.grid = TRUE))
 {
   options(warn = -1)
   
@@ -43,9 +48,12 @@ phylospm <- function(tr, traits = NULL, title = "Phylogenetic Scatterplot Matrix
   if (is.null(tr.params$colors))
     tr.params$colors <- c("red", 'orange', 'green', 'cyan', 'blue')
   
-  default.tr.params <- list(size = 1, 
-                            colors = c("red", 'orange', 'green', 'cyan', 'blue'),
-                            panel.grid = TRUE)
+  if (is.null(title))
+    title <- c("Phylogenetic Scatterplot Matrix")
+  
+  default.tr.params<-list(size = 1, 
+                          colors = c("red", 'orange', 'green', 'cyan', 'blue'),
+                          panel.grid = TRUE)
   new.tr.params <- set.params(tr.params, default.tr.params)
   
 
@@ -65,15 +73,18 @@ phylospm <- function(tr, traits = NULL, title = "Phylogenetic Scatterplot Matrix
           cbind(rbind(traits, anc))
   
   plst <- list()
-  n = 0
+  n <-  0
   for (i in 1:nc) for (j in 1:nc){
-    n = n + 1
+    n <-  n + 1
     if (i == j) {
-      suppressMessages(p <- ggtree(ftrd, mapping = aes_string(color = paste("V", i, sep = "")), 
-                                   continuous = "color", size = new.tr.params$size) + 
-                              scale_color_gradientn(colors = new.tr.params$colors) +
-                              coord_cartesian(default = T) +
-                              theme_treeSpace2())
+      suppressMessages(
+        p <- ggtree(ftrd, 
+                    mapping = aes_string(color = paste("V", i, sep = "")), 
+                    continuous = "color", size = new.tr.params$size) + 
+                    scale_color_gradientn(colors = new.tr.params$colors) +
+                    coord_cartesian(default = TRUE) +
+                    theme_treeSpace2()
+        )
       
       suppressMessages(p <- p + coordtrans(p, traits[,i]))
       
