@@ -21,13 +21,19 @@ knitr::opts_chunk$set(echo = TRUE)
 options(warn = -1)
 ```
 
-## Introduction
+# Introduction
 
-`ggtreeSpace` is a comprehensive visualization tool design to plot phylomorphospace with the grammar of graphics.
+In the evolving field of evolutionary biology and phylogenetics, visualizing phylomorphospace plays a pivotal role in understanding the diversification of traits across species within a phylogenetic framework. However, as research progresses, datasets not only increase in size but also in the complexity of their relationships, which makes the visualization process more challenging and damands advanced visualization solutions.
+
+Here, we introduce `ggtreeSpace`, a comprehensive visualization tool designed for plotting fully annotated phylomorphospaces using the grammar of graphics, offering researchers with extensive control and customization options for their phylomorphospace plots.
+
+Currently, there are other Bioconductor packages like `phytools` that also support creating a phylomorphospace. `phytools` facilitates plotting with its `phylomorphospace` function, which allows for customization and annotation, including the ability to set edge and node colors. And it also supports plotting 3d phylomorphospace with `phylomorphospace3d` function. 
+
+Compares to `phytools`, `ggtreeSpace` focus on crafting 2D phylomorphospaces using the grammar of graphics, enabling the creation of fully annotated visualizations through a layer-by-layer annotation approach. This method provides researchers with a more intuitive and user-friendly experience in plotting, enhancing the logic and visualization clarity. `ggtreeSpace` not only includes unique layers specifically designed for phylomorphospace annotations but also supports layers from the ggplot2 and ggtree communities, offering a wide range of customization options. Additionally, it supports adding phylomorphospace as a graphic layer, enabling the combination of tree-like structures with various types of spaces, such as maps or histological staining images, thus broadening the applications of phylomorphospace analysis.
 
 ## Function
 
-You can plot phylomorphospace easily with ggtreeSpace fuction:
+You can plot basic phylomorphospace easily with the `ggtreeSpace` fuction, and add annotation to it with the `+` operator. In this example, we add symbolic point to the tip of phylomorphospace:
 
 ```{r pressure, echo=TRUE}
 suppressPackageStartupMessages(library(ggtree))
@@ -39,7 +45,7 @@ ggtreeSpace(tr, td) +
   geom_tippoint()
 ```
 
-ggtreeSpace supports adding phylomorphospace as a graphic layer.
+ggtreeSpace also supports adding phylomorphospace as a graphic layer. This can broaden the applications of phylomorphospace analysis by combine the tree-like structure with different types of spaces.
 
 ```{r example1, echo=TRUE}
 suppressPackageStartupMessages(library(ggtree))
@@ -53,7 +59,8 @@ ggplot() +
 ```
 
 
-You can add an additional layer of heatmap base on your data.
+You can also introduce an additional heatmap layer based on your data, adding another dimension to better elucidate evolutionary patterns.
+
 ```{r example2, echo=TRUE}
 suppressPackageStartupMessages(library(ggtree))
 suppressPackageStartupMessages(library(ggtreeSpace))
