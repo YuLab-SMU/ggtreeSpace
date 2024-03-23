@@ -19,6 +19,11 @@ vignette: >
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 options(warn = -1)
+
+library(ggtree)
+library(ggtreeSpace)
+library(phytools)
+library(ggplot2)
 ```
 
 # Introduction
@@ -36,9 +41,10 @@ Compares to `phytools`, `ggtreeSpace` focus on crafting 2D phylomorphospaces usi
 You can plot basic phylomorphospace easily with the `ggtreeSpace` fuction, and add annotation to it with the `+` operator. In this example, we add symbolic point to the tip of phylomorphospace:
 
 ```{r pressure, echo=TRUE}
-suppressPackageStartupMessages(library(ggtree))
-suppressPackageStartupMessages(library(ggtreeSpace))
-suppressPackageStartupMessages(library(phytools))
+library(ggtree)
+library(ggtreeSpace)
+library(phytools)
+
 tr <- rtree(15)
 td <- fastBM(tr, nsim = 2)
 ggtreeSpace(tr, td) +
@@ -48,10 +54,11 @@ ggtreeSpace(tr, td) +
 ggtreeSpace also supports adding phylomorphospace as a graphic layer. This can broaden the applications of phylomorphospace analysis by combine the tree-like structure with different types of spaces.
 
 ```{r example1, echo=TRUE}
-suppressPackageStartupMessages(library(ggtree))
-suppressPackageStartupMessages(library(ggtreeSpace))
-suppressPackageStartupMessages(library(phytools))
-suppressPackageStartupMessages(library(ggplot2))
+library(ggtree)
+library(ggtreeSpace)
+library(phytools)
+library(ggplot2)
+
 tr1 <- rtree(15)
 td1 <- fastBM(tr1, nsim = 2)
 ggplot() +
@@ -62,9 +69,9 @@ ggplot() +
 You can also introduce an additional heatmap layer based on your data, adding another dimension to better elucidate evolutionary patterns.
 
 ```{r example2, echo=TRUE}
-suppressPackageStartupMessages(library(ggtree))
-suppressPackageStartupMessages(library(ggtreeSpace))
-suppressPackageStartupMessages(library(phytools))
+library(ggtree)
+library(ggtreeSpace)
+library(phytools)
 
 tr2 <- rtree(15)
 td2 <- fastBM(tr2, nsim = 2, bounds = c(0, Inf))
