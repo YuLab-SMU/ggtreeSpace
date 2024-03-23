@@ -47,6 +47,22 @@ clean:
 	cd ..;\
 	$(RM) -r $(PKGNAME).Rcheck/
 
+biocinit:
+	git remote add upstream git@git.bioconductor.org:packages/$(PKGNAME).git;\
+	git fetch --all
+
+
+update:
+	git fetch --all;\
+	git checkout devel;\
+	git merge upstream/devel;\
+	git merge origin/devel
+
+push:
+	git push upstream devel;\
+	git push origin devel
+
+
 pages:
 	Rscript -e 'rmarkdown::render("gh-pages/index.Rmd")'
 
