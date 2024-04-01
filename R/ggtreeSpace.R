@@ -21,17 +21,22 @@
 #' @export
 ggtreeSpace <- function(tr, tipdata, mapping = NULL, ...){
   
-  c <- colnames(tipdata)
+  if(is.null(colnames(tipdata)) || length(colnames(tipdata)) == 0) {
+    c <- c("x", "y")
+  } else {
+    c <- colnames(tipdata)
+  }
+  
   trd <- make_ts_data(tr, tipdata)
-
+  
   p <- ggtree(trd, 
               mapping = mapping, 
               layout = 'equal_angle', 
               ...) +
-        theme_treeSpace() +
-        labs(x = c[1],
-             y = c[2])
-  
+    theme_treeSpace() +
+    labs(x = c[1],
+         y = c[2])
+
   suppressMessages(p <- p + coord_cartesian())
         
   class(p) <- c("ggtreeSpace", class(p))

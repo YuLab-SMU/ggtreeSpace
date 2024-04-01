@@ -1,23 +1,42 @@
 Package: ggtreeSpace
-Title: Plot phylomorphospaces
-Version: 0.0.0.9001
-Authors@R: 
-    person(given = "Li",
-           family = "Lin",
-           role = c("aut", "cre"),
-           email = "williamlee2220@gmail.com")
-Description: What the package does (one paragraph).
+Title: Visualizing Phylomorphospaces using 'ggtree'
+Version: 0.99.1
+Authors@R: c(
+       person("Guangchuang", "Yu", 
+              email = "guangchuangyu@gmail.com", 
+              role = c("aut", "cre", "ths", "cph"), 
+              comment = c(ORCID = "0000-0002-6485-8781")
+       ),
+        person(given = "Li", family = "Lin",
+              email = "williamlee2220@gmail.com",
+              role = "ctb"
+       )
+  )
+Description: This package is a comprehensive visualization tool specifically designed for 
+              exploring phylomorphospace. It not only simplifies the process of 
+              generating phylomorphospace but also enhances it 
+              with the capability to add graphic layers to the plot with
+              grammar of graphics to create fully annotated phylomorphospaces.
 Imports: 
-    ggplot2,
-    ggtree,
+    akima,
+    ape,
+    dplyr,
     GGally,
+    ggplot2,
+    grid,
+    ggtree,
     phytools,
     rlang,
-    akima,
-    tidyr,
     tibble,
-    dplyr,
-    ape
-License: MIT + file LICENSE
-RoxygenNote: 7.2.3
+    tidyr
+Suggests:
+    knitr,
+    prettydoc,
+    rmarkdown
+License: Artistic-2.0
+biocViews: Annotation, Visualization, Phylogenetics, Software
+BugReports: https://github.com/YuLab-SMU/ggtreeSpace/issues 
+URL: https://github.com/YuLab-SMU/ggtreeSpace
+RoxygenNote: 7.3.1
 Encoding: UTF-8
+VignetteBuilder: knitr
