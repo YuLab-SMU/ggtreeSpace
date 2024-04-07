@@ -2,7 +2,7 @@
 % Please edit documentation in R/phylospm.R
 \name{phylospm}
 \alias{phylospm}
-\title{Plot phylogenetic scatterplot matrix}
+\title{Plot phylogenetic scatterplot matrix.}
 \usage{
 phylospm(
   tr,
@@ -18,13 +18,13 @@ phylospm(
 \arguments{
 \item{tr}{A phylogenetic tree}
 
-\item{traits}{A data frame containing}
+\item{traits}{A data frame containing multiple column of trait data}
 
 \item{title}{Set the title for the phylogenetic scatterplot matrix}
 
-\item{xAxisLabels}{Set the lable of the x axis}
+\item{xAxisLabels}{Set the label of the x axis}
 
-\item{yAxisLabels}{Set the lable of the y axis}
+\item{yAxisLabels}{Set the label of the y axis}
 
 \item{tr.params}{List of parameters to customize the phylogenetic tree 
 with continuous trait mapping as continuous colors on the branch}
@@ -35,11 +35,14 @@ with continuous trait mapping as continuous colors on the branch}
 phylospm object
 }
 \description{
-Plot phylogenetic scatterplot matrix
+This function creates a scatterplot matrix for comparing 
+multiple continuous traits mapped onto the same phylogenetic tree, providing
+a visual representation of trait correlations and evolutionary patterns.
 }
 \examples{
 library(ggtree)
 library(phytools)
+library(ggtreeSpace)
 
 tr <- rtree(10)
 a <- fastBM(tr, nsim = 4)

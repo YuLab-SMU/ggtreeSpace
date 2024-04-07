@@ -1,16 +1,20 @@
-#' @title Plot phylogenetic scatterplot matrix
+#' @title Plot phylogenetic scatterplot matrix. 
+#'
+#' @description  This function creates a scatterplot matrix for comparing 
+#' multiple continuous traits mapped onto the same phylogenetic tree, providing
+#' a visual representation of trait correlations and evolutionary patterns.
 #'
 #' @param tr A phylogenetic tree
-#' @param traits A data frame containing 
+#' @param traits A data frame containing multiple column of trait data
 #' @param title Set the title for the phylogenetic scatterplot matrix
-#' @param xAxisLabels Set the lable of the x axis
-#' @param yAxisLabels Set the lable of the y axis
+#' @param xAxisLabels Set the label of the x axis
+#' @param yAxisLabels Set the label of the y axis
 #' @param tr.params List of parameters to customize the phylogenetic tree 
 #' with continuous trait mapping as continuous colors on the branch
 #' @param sptr.params List of parameters to customize the phylomorphospaces
 #'
 #' @return phylospm object
-#' @importFrom ggplot2 aes_string
+#' @importFrom ggplot2 aes
 #' @importFrom ggplot2 scale_color_gradientn
 #' @importFrom ggplot2 coord_cartesian
 #' @importFrom ggtree ggtree
@@ -22,6 +26,7 @@
 #' @examples
 #' library(ggtree)
 #' library(phytools)
+#' library(ggtreeSpace)
 #' 
 #' tr <- rtree(10)
 #' a <- fastBM(tr, nsim = 4)
@@ -39,10 +44,14 @@ phylospm <- function(tr, traits = NULL, title = NULL,
                                         panel.grid = TRUE)) {
   options(warn = -1)
   
-  cat("Preparing phylogenetic scatterplot matrix, please wait...\n")
+  message("Preparing phylogenetic scatterplot matrix, please wait...\n")
   
   if(is.null(traits))
     stop("Traits data is required.")
+  
+  if (!is.data.frame(traits) && !is.matrix(traits)) {
+    stop("The input traits data must be a data frame or matrix.")
+  }
   
   if (is.null(tr.params$colors))
     tr.params$colors <- c("red", 'orange', 'green', 'cyan', 'blue')
@@ -79,22 +88,22 @@ phylospm <- function(tr, traits = NULL, title = NULL,
       if (i == j) {
         suppressMessages(
           p <- ggtree(ftrd, 
-                      mapping = aes_string(color = paste("V", i, sep = "")), 
+                      mapping = aes(color = !!sym(paste("V", i, sep = ""))), 
                       continuous = "color", size = new.tr.params$size) + 
                       scale_color_gradientn(colors = new.tr.params$colors) +
                       coord_cartesian(default = TRUE) +
-                      theme_treeSpace2()
+                      theme_treespace2()
           )
         
-        suppressMessages(p <- p + coordtrans(p, traits[,i]))
+        p <- p + coordtrans(p, traits[,i])
         
         if (new.tr.params$panel.grid){
           p <- p + theme_bw()
         }
         plst[[n]] <- p  
       } else {
-        p <- ggtreeSpace(tr, traits[,c(j, i)]) +
-              theme_treeSpace2()
+        p <- ggtreespace(tr, traits[,c(j, i)]) +
+              theme_treespace2()
         
         p <- lim_set(p, traits[,c(j, i)])
         
