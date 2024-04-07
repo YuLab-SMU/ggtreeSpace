@@ -1,7 +1,8 @@
 
 #' Phylomorphospace theme No.1, with arrow-end axis and grey panel grid.
 #'
-#' @param ... additional parameters for `ggplot2::theme`
+#' @param ... additional parameters for `ggplot2::theme`. Please use
+#' `?ggplot2::theme()` to learn more information.
 #'
 #' @return a theme object with arrow-end axis
 #' @export
@@ -34,7 +35,8 @@ theme_treespace <- function(...){
 
 #' Phylomorphospace theme No.2, with blank background and panel border.
 #'
-#' @param ... additional parameters for `ggplot2::theme`
+#' @param ... additional parameters for `ggplot2::theme`. Please use
+#' `?ggplot2::theme()` to learn more information.
 #'
 #' @return a theme object with blank background and panel border
 #' @export

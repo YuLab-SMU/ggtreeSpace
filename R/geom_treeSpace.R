@@ -4,13 +4,16 @@
 #' @param tr a tree object. This should be an object of class that is 
 #'           compatible with `ggtree`, typically an object of class 
 #'           `phylo` or `treedata`.
-#' @param data Trait data as a data frame or matrix, where each row represents
-#' a tree tip or node. 
+#' @param data Trait data as a data frame or matrix, where each row 
+#' represents a tree tip or node. 
+#' 
 #'   For data matching the number of tips, ancestral traits are reconstructed
 #'   for internal nodes. 
+#'   
 #'   For data equal to the total number of nodes, values are directly used as
 #'   node coordinates.
-#' @param ... additional parameters for customization with `ggtree`
+#' @param ... additional parameters for customization with `geom_tree`. Please
+#' use `?ggtree::geom_tree` fot more information.
 #'
 #' @return ggplot object
 #' @export
@@ -52,13 +55,16 @@ make_ts_layer <- function(tr, data, mapping, ...)
 #' @param tr a tree object. This should be an object of class that is 
 #'           compatible with `ggtree`, typically an object of 
 #'           class `phylo` or `treedata`.
-#' @param data Trait data as a data frame or matrix, where each row represents 
-#' a tree tip or node. 
+#' @param data Trait data as a data frame or matrix, where each row 
+#' represents  a tree tip or node. 
+#' 
 #'   For data matching the number of tips, ancestral traits are reconstructed 
 #'   for internal nodes. 
+#'   
 #'   For data equal to the total number of nodes, values are directly used as 
 #'   node coordinates.
-#' @param ... additional parameters for customization with `ggtree`
+#' @param ... additional parameters for customization with `ggtree`. Please 
+#' use `?ggtree::ggtree` fot more information.
 #'
 #' @return ggplot object
 #' @importFrom ggtree fortify

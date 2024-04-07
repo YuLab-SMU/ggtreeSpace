@@ -7,14 +7,15 @@
 geom_tsheatmap(trait, resolution = 0.001, bins = 24, ...)
 }
 \arguments{
-\item{trait}{trait data. It can be either a data frame with node numbers and 
-trait, or a trait name present in the plot data.}
+\item{trait}{trait data. It can be either a data frame with node numbers 
+and  trait, or a trait name present in the plot data.}
 
 \item{resolution}{resolution of the heat map}
 
 \item{bins}{number of contour bins}
 
-\item{...}{additional parameters for `geom_contour_filled`}
+\item{...}{additional parameters for `geom_contour_filled`. Please 
+use `?ggplot2::geom_contour_filled` fot more information.}
 }
 \value{
 ggplot object

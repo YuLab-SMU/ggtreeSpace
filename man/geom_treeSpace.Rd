@@ -11,14 +11,17 @@ geom_treespace(tr, data, mapping = NULL, ...)
 compatible with `ggtree`, typically an object of class 
 `phylo` or `treedata`.}
 
-\item{data}{Trait data as a data frame or matrix, where each row represents
-a tree tip or node. 
+\item{data}{Trait data as a data frame or matrix, where each row 
+represents a tree tip or node. 
+
   For data matching the number of tips, ancestral traits are reconstructed
   for internal nodes. 
+  
   For data equal to the total number of nodes, values are directly used as
   node coordinates.}
 
-\item{...}{additional parameters for customization with `ggtree`}
+\item{...}{additional parameters for customization with `geom_tree`. Please
+use `?ggtree::geom_tree` fot more information.}
 }
 \value{
 ggplot object

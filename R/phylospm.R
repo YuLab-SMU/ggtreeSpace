@@ -1,8 +1,9 @@
 #' @title Plot phylogenetic scatterplot matrix. 
 #'
 #' @description  This function creates a scatterplot matrix for comparing 
-#' multiple continuous traits mapped onto the same phylogenetic tree, providing
-#' a visual representation of trait correlations and evolutionary patterns.
+#' multiple continuous traits mapped onto the same phylogenetic tree, 
+#' providing a visual representation of trait correlations and 
+#' evolutionary patterns.
 #'
 #' @param tr A phylogenetic tree
 #' @param traits A data frame containing multiple column of trait data
@@ -10,8 +11,12 @@
 #' @param xAxisLabels Set the label of the x axis
 #' @param yAxisLabels Set the label of the y axis
 #' @param tr.params List of parameters to customize the phylogenetic tree 
-#' with continuous trait mapping as continuous colors on the branch
-#' @param sptr.params List of parameters to customize the phylomorphospaces
+#' with continuous trait mapping as continuous colors on the branch. 
+#'Users can add tip point, add tip label, set tip label direction and set
+#' background gird.
+#' @param sptr.params List of parameters to customize the phylomorphospaces.
+#' Users can add tip point, add tip label, set tip label direction and set
+#' background gird.
 #'
 #' @return phylospm object
 #' @importFrom ggplot2 aes
@@ -54,13 +59,21 @@ phylospm <- function(tr, traits = NULL, title = NULL,
   }
   
   if (is.null(tr.params$colors))
-    tr.params$colors <- c("red", 'orange', 'green', 'cyan', 'blue')
+    tr.params$colors <- c("red", 
+                          'orange', 
+                          'green', 
+                          'cyan', 
+                          'blue')
   
   if (is.null(title))
     title <- c("Phylogenetic Scatterplot Matrix")
   
   default.tr.params<-list(size = 1, 
-                          colors = c("red", 'orange', 'green', 'cyan', 'blue'),
+                          colors = c("red", 
+                                     'orange', 
+                                     'green', 
+                                     'cyan', 
+                                     'blue'),
                           panel.grid = TRUE)
   new.tr.params <- set.params(tr.params, default.tr.params)
   

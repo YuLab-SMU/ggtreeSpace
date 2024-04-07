@@ -7,7 +7,8 @@
 theme_treespace2(...)
 }
 \arguments{
-\item{...}{additional parameters for `ggplot2::theme`}
+\item{...}{additional parameters for `ggplot2::theme`. Please use
+`?ggplot2::theme()` to learn more information.}
 }
 \value{
 a theme object with blank background and panel border
