@@ -1,10 +1,18 @@
 #' @title Plot phylomorphospace
 #'
-#' @description This function plot phylomorphospace
-#' @param tr tree
-#' @param tipdata tipdata containig tip coordinates
+#' @description This function plots a phylomorphospace by mapping a tree
+#' object onto a vector space like morphospace.
+#' @param tr a tree object. This should be an object of class that is 
+#'           compatible with `ggtree`, typically an object of class 
+#'           `phylo` or `treedata`.
+#' @param data Trait data as a data frame or matrix, where each row represents 
+#' a tree tip or node. 
+#'   For data matching the number of tips, ancestral traits are reconstructed 
+#'   for internal nodes. 
+#'   For data equal to the total number of nodes, values are directly used as 
+#'   node coordinates.
 #' @param mapping aesthetic mapping
-#' @param ... additional parameters
+#' @param ... additional parameters for customization with `ggtree`
 #' @return ggtreeSpace object
 #' @importFrom ggtree ggtree
 #' @importFrom ggplot2 labs
@@ -12,28 +20,32 @@
 #' @examples
 #' library(ggtree)
 #' library(phytools)
+#' library(ggtreeSpace)
 #' 
 #' tr <- rtree(15)
 #' td <- fastBM(tr, nsim = 2)
-#' ggtreeSpace(tr, td) +
+#' ggtreespace(tr, td) +
 #'  geom_tippoint()
 #'
 #' @export
-ggtreeSpace <- function(tr, tipdata, mapping = NULL, ...){
+ggtreespace <- function(tr, data, mapping = NULL, ...){
   
-  if(is.null(colnames(tipdata)) || length(colnames(tipdata)) == 0) {
+  if(is.null(data))
+    stop("Traits data is required.")
+  
+  if(is.null(colnames(data)) || length(colnames(data)) == 0) {
     c <- c("x", "y")
   } else {
-    c <- colnames(tipdata)
+    c <- colnames(data)
   }
   
-  trd <- make_ts_data(tr, tipdata)
+  trd <- make_ts_data(tr, data)
   
   p <- ggtree(trd, 
               mapping = mapping, 
               layout = 'equal_angle', 
               ...) +
-    theme_treeSpace() +
+    theme_treespace() +
     labs(x = c[1],
          y = c[2])
 

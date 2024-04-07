@@ -13,6 +13,7 @@ recal_bl <- function(data) {
 #' @importFrom ggplot2 xlim
 #' @importFrom ggplot2 ylim
 coordtrans <- function(p, t){
+  
   pd <- p$data
   pd$x <- pd$x - ((max(pd$x)-min(pd$x))/2)
   pd$y <- pd$y - ((max(pd$y)-min(pd$y))/2)

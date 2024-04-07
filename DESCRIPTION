@@ -12,13 +12,15 @@ Authors@R: c(
               role = "ctb"
        )
   )
-Description: This package is a comprehensive visualization tool specifically designed for 
-              exploring phylomorphospace. It not only simplifies the process of 
-              generating phylomorphospace but also enhances it 
-              with the capability to add graphic layers to the plot with
-              grammar of graphics to create fully annotated phylomorphospaces.
+Description: This package is a comprehensive visualization tool specifically 
+             designed for exploring phylomorphospace. It not only simplifies 
+             the process of generating phylomorphospace, but also enhances it 
+             with the capability to add graphic layers to the plot with
+             grammar of graphics to create fully annotated phylomorphospaces.
+             It also provide some utilities to help interpret evolutionary 
+             patterns.
 Imports: 
-    akima,
+    interp,
     ape,
     dplyr,
     GGally,
@@ -28,11 +30,14 @@ Imports:
     phytools,
     rlang,
     tibble,
-    tidyr
+    tidyr,
+    stats
 Suggests:
     knitr,
     prettydoc,
-    rmarkdown
+    rmarkdown,
+    BiocStyle,
+    testthat (>= 3.0.0)
 License: Artistic-2.0
 biocViews: Annotation, Visualization, Phylogenetics, Software
 BugReports: https://github.com/YuLab-SMU/ggtreeSpace/issues 
@@ -40,3 +45,4 @@ URL: https://github.com/YuLab-SMU/ggtreeSpace
 RoxygenNote: 7.3.1
 Encoding: UTF-8
 VignetteBuilder: knitr
+Config/testthat/edition: 3

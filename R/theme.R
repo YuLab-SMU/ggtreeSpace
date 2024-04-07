@@ -1,7 +1,7 @@
 
-#' Phylomorphospace theme No.1, with arrow-end axis and grey panel grid
+#' Phylomorphospace theme No.1, with arrow-end axis and grey panel grid.
 #'
-#' @param ... additional parameters for theme()
+#' @param ... additional parameters for `ggplot2::theme`
 #'
 #' @return a theme object with arrow-end axis
 #' @export
@@ -15,13 +15,14 @@
 #' @examples
 #' library(ggtree)
 #' library(phytools)
+#' library(ggtreeSpace)
 #' 
 #' tr <- rtree(15)
 #' td <- fastBM(tr, nsim = 2)
-#' ggtreeSpace(tr, td) +
+#' ggtreespace(tr, td) +
 #'  geom_tippoint() + 
-#'  theme_treeSpace()
-theme_treeSpace <- function(...){
+#'  theme_treespace()
+theme_treespace <- function(...){
   theme_minimal() %+replace%
     theme(axis.line.x = element_line(arrow = arrow(length = unit(0.3, 'cm'))),
           axis.line.y = element_line(arrow = arrow(length = unit(0.3, 'cm'))),
@@ -31,9 +32,9 @@ theme_treeSpace <- function(...){
 
 
 
-#' Phylomorphospace theme No.1,with blank background and panel border
+#' Phylomorphospace theme No.2, with blank background and panel border.
 #'
-#' @param ... additional parameters for theme()
+#' @param ... additional parameters for `ggplot2::theme`
 #'
 #' @return a theme object with blank background and panel border
 #' @export
@@ -43,13 +44,14 @@ theme_treeSpace <- function(...){
 #' @examples
 #' library(ggtree)
 #' library(phytools)
+#' library(ggtreeSpace)
 #' 
 #' tr <- rtree(15)
 #' td <- fastBM(tr, nsim = 2)
-#' ggtreeSpace(tr, td) +
+#' ggtreespace(tr, td) +
 #'  geom_tippoint() + 
-#'  theme_treeSpace2()
-theme_treeSpace2 <- function(...){
+#'  theme_treespace2()
+theme_treespace2 <- function(...){
   theme_bw() +
     theme(panel.grid = element_blank(), 
           ...)
