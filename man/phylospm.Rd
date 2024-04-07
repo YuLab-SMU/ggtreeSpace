@@ -27,17 +27,22 @@ phylospm(
 \item{yAxisLabels}{Set the label of the y axis}
 
 \item{tr.params}{List of parameters to customize the phylogenetic tree 
-with continuous trait mapping as continuous colors on the branch}
+with continuous trait mapping as continuous colors on the branch. 
+Users can add tip point, add tip label, set tip label direction and set
+background gird.}
 
-\item{sptr.params}{List of parameters to customize the phylomorphospaces}
+\item{sptr.params}{List of parameters to customize the phylomorphospaces.
+Users can add tip point, add tip label, set tip label direction and set
+background gird.}
 }
 \value{
 phylospm object
 }
 \description{
 This function creates a scatterplot matrix for comparing 
-multiple continuous traits mapped onto the same phylogenetic tree, providing
-a visual representation of trait correlations and evolutionary patterns.
+multiple continuous traits mapped onto the same phylogenetic tree, 
+providing a visual representation of trait correlations and 
+evolutionary patterns.
 }
 \examples{
 library(ggtree)

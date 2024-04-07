@@ -1,10 +1,11 @@
 #' Add a layer of heat map with trait data 
 #'
-#' @param trait trait data. It can be either a data frame with node numbers and 
-#' trait, or a trait name present in the plot data.
+#' @param trait trait data. It can be either a data frame with node numbers 
+#' and  trait, or a trait name present in the plot data.
 #' @param resolution resolution of the heat map
 #' @param bins number of contour bins
-#' @param ... additional parameters for `geom_contour_filled`
+#' @param ... additional parameters for `geom_contour_filled`. Please 
+#' use `?ggplot2::geom_contour_filled` fot more information.
 #'
 #' @return ggplot object
 #' @examples

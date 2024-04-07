@@ -7,7 +7,8 @@
 theme_treespace(...)
 }
 \arguments{
-\item{...}{additional parameters for `ggplot2::theme`}
+\item{...}{additional parameters for `ggplot2::theme`. Please use
+`?ggplot2::theme()` to learn more information.}
 }
 \value{
 a theme object with arrow-end axis
