@@ -50,9 +50,9 @@ lim_set <- function(p, df){
 
 #' @importFrom rlang get_expr
 set.params <- function(input, default){
-  if (is.null(get_expr(input))) {
-    return(NULL)
-  }
+  # if (is.null(get_expr(input))) {
+  #   return(NULL)
+  # }
   intdi <- intersect(names(input), names(default))
   setd <- setdiff(names(default), names(input))
   seti <- setdiff(names(input), names(default))
@@ -60,6 +60,8 @@ set.params <- function(input, default){
   setd <- default[match(setd, names(default))]
   seti <- input[match(seti, names(input))]
   newp <- c(intdi, setd, seti)
+  
+  newp
 }
 
 

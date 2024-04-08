@@ -21,7 +21,7 @@ represents a tree tip or node.
   node coordinates.}
 
 \item{...}{additional parameters for customization with `geom_tree`. Please
-use `?ggtree::geom_tree` fot more information.}
+use `?ggtree::geom_tree` for more information.}
 }
 \value{
 ggplot object

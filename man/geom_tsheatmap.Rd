@@ -15,7 +15,7 @@ and  trait, or a trait name present in the plot data.}
 \item{bins}{number of contour bins}
 
 \item{...}{additional parameters for `geom_contour_filled`. Please 
-use `?ggplot2::geom_contour_filled` fot more information.}
+use `?ggplot2::geom_contour_filled` for more information.}
 }
 \value{
 ggplot object

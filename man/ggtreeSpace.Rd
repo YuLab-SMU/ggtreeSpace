@@ -23,7 +23,7 @@ represents a tree tip or node.
 \item{mapping}{aesthetic mapping}
 
 \item{...}{additional parameters for customization with `ggtree`. Please 
-use `?ggtree::ggtree` fot more information.}
+use `?ggtree::ggtree` for more information.}
 }
 \value{
 ggtreeSpace object
