@@ -15,7 +15,7 @@
 #'   node coordinates.
 #' @param mapping aesthetic mapping
 #' @param ... additional parameters for customization with `ggtree`. Please 
-#' use `?ggtree::ggtree` fot more information.
+#' use `?ggtree::ggtree` for more information.
 #' @return ggtreeSpace object
 #' @importFrom ggtree ggtree
 #' @importFrom ggplot2 labs

@@ -5,7 +5,7 @@
 #' @param resolution resolution of the heat map
 #' @param bins number of contour bins
 #' @param ... additional parameters for `geom_contour_filled`. Please 
-#' use `?ggplot2::geom_contour_filled` fot more information.
+#' use `?ggplot2::geom_contour_filled` for more information.
 #'
 #' @return ggplot object
 #' @examples

@@ -23,7 +23,7 @@ represents  a tree tip or node.
   node coordinates.}
 
 \item{...}{additional parameters for customization with `ggtree`. Please 
-use `?ggtree::ggtree` fot more information.}
+use `?ggtree::ggtree` for more information.}
 }
 \value{
 ggplot object
