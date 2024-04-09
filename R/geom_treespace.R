@@ -101,26 +101,25 @@ make_ts_data <- function(tr, data)
   } 
   
   trd <- fortify(tr)
-  dat <- cbind(data[, 1], data[, 2])
+  # dat <- cbind(data[, 1], data[, 2])
+  dat <- data[, c(1,2)]
   
-  if (nrow(data) == sum(trd$isTip == TRUE)) {
-    anc <- apply(dat, 2, fastAnc, tree = as.phylo(tr))
-    nodecoords <- rbind(dat, anc)
-    
-    tsd <- make_tsd(trd, nodecoords)
-    
-    tsd
-  }
+  nr <- nrow(dat)
+  nt <- Ntip(tr)
+  nn <- Nnode(tr, internal.only = FALSE)
   
-  else if (nrow(data) == nrow(trd)) {
-    tsd <- make_tsd(trd, dat)
-    
-    tsd
-  }
-  else {
+  if (nr != nt || nr != nn) {
     stop("The input trait data must be as long as the number of 
-         tips or nodes.")
+         tips or nodes.")    
   }
+  
+  if (nr == nt) {
+    anc <- apply(dat, 2, fastAnc, tree = as.phylo(tr))
+    dat <- rbind(dat, anc)   
+   }
+  
+  tsd <- make_tsd(trd, dat)    
+  return(tsd)
 }
 
 make_tsd <- function(trd, coorddata){
