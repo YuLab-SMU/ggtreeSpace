@@ -1,4 +1,3 @@
-
 #' Phylomorphospace theme No.1, with arrow-end axis and grey panel grid.
 #'
 #' @param ... additional parameters for `ggplot2::theme`. Please use
@@ -17,17 +16,19 @@
 #' library(ggtree)
 #' library(phytools)
 #' library(ggtreeSpace)
-#' 
+#'
 #' tr <- rtree(15)
 #' td <- fastBM(tr, nsim = 2)
 #' ggtreespace(tr, td) +
-#'  geom_tippoint() + 
-#'  theme_treespace()
-theme_treespace <- function(...){
+#'   geom_tippoint() +
+#'   theme_treespace()
+theme_treespace <- function(...) {
   theme_minimal() %+replace%
-    theme(axis.line.x = element_line(arrow = arrow(length = unit(0.3, 'cm'))),
-          axis.line.y = element_line(arrow = arrow(length = unit(0.3, 'cm'))),
-          ...) 
+    theme(
+      axis.line.x = element_line(arrow = arrow(length = unit(0.3, "cm"))),
+      axis.line.y = element_line(arrow = arrow(length = unit(0.3, "cm"))),
+      ...
+    )
 }
 
 
@@ -47,15 +48,16 @@ theme_treespace <- function(...){
 #' library(ggtree)
 #' library(phytools)
 #' library(ggtreeSpace)
-#' 
+#'
 #' tr <- rtree(15)
 #' td <- fastBM(tr, nsim = 2)
 #' ggtreespace(tr, td) +
-#'  geom_tippoint() + 
-#'  theme_treespace2()
-theme_treespace2 <- function(...){
+#'   geom_tippoint() +
+#'   theme_treespace2()
+theme_treespace2 <- function(...) {
   theme_bw() +
-    theme(panel.grid = element_blank(), 
-          ...)
+    theme(
+      panel.grid = element_blank(),
+      ...
+    )
 }
-

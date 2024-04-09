@@ -7,14 +7,14 @@
 geom_tsheatmap(trait, resolution = 0.001, bins = 24, ...)
 }
 \arguments{
-\item{trait}{trait data. It can be either a data frame with node numbers 
+\item{trait}{trait data. It can be either a data frame with node numbers
 and  trait, or a trait name present in the plot data.}
 
 \item{resolution}{resolution of the heat map}
 
 \item{bins}{number of contour bins}
 
-\item{...}{additional parameters for `geom_contour_filled`. Please 
+\item{...}{additional parameters for `geom_contour_filled`. Please
 use `?ggplot2::geom_contour_filled` for more information.}
 }
 \value{
@@ -32,17 +32,25 @@ library(ggtreeSpace)
 
 tr <- rtree(15)
 td <- fastBM(tr, nsim = 2, bounds = c(0, Inf))
-col <- colorRampPalette(c("#FFFFCC", "#FFEDA0", "#FED976", "#FEB24C", 
-                          "#FD8D3C", "#FC4E2A", "#E31A1C", "#B10026"))(24)
-tdex <- data.frame(z = fastBM(tr, nsim = 1, bounds = c(0, Inf)),
-                   node = 1:15)
+col <- colorRampPalette(c(
+  "#FFFFCC", "#FFEDA0", "#FED976", "#FEB24C",
+  "#FD8D3C", "#FC4E2A", "#E31A1C", "#B10026"
+))(24)
+tdex <- data.frame(
+  z = fastBM(tr, nsim = 1, bounds = c(0, Inf)),
+  node = 1:15
+)
 p <- ggtreespace(tr, td)
 p \%<+\% tdex +
   geom_tippoint() +
-  geom_tsheatmap(trait = "z", alpha = 0.7 ,resolution = 0.01, bin = 24) +
-  scale_fill_manual(values = col,
-                    guide = guide_colorsteps(show.limits = TRUE)) +
+  geom_tsheatmap(trait = "z", alpha = 0.7, resolution = 0.01, bin = 24) +
+  scale_fill_manual(
+    values = col,
+    guide = guide_colorsteps(show.limits = TRUE)
+  ) +
   theme_treespace2() +
-  theme(legend.key.height = unit(1, "null"),
-        legend.justification.top = "right")
+  theme(
+    legend.key.height = unit(1, "null"),
+    legend.justification.top = "right"
+  )
 }
