@@ -125,7 +125,7 @@ make_ts_data <- function(tr, data) {
 
 make_tsd <- function(trd, coorddata) {
   trd |>
-    select(-c(x, y)) |>
+    select( - all_of(c('x', 'y'))) |>
     mutate(
       x = coorddata[, 1],
       y = coorddata[, 2]

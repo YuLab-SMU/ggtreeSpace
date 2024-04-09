@@ -56,13 +56,14 @@ geom_tsheatmap <- function(trait, resolution = 0.001, bins = 24, ...) {
 #' @importFrom ggplot2 geom_contour_filled
 #' @importFrom ggplot2 aes
 #' @importFrom ggplot2 after_stat
+#' @importFrom rlang .data
 make_hm_layer <- function(data, trait, resolution, bins, ...) {
   hmdata <- make_hm_data(data, trait, resolution)
   layer <- geom_contour_filled(
     data = hmdata,
     mapping = aes(
-      x = x, y = y, z = z,
-      fill = after_stat(level)
+      x = .data$x, y = .data$y, z = .data$z,
+      fill = after_stat(.data$level)
     ),
     bins = bins,
     ...

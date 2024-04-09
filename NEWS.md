@@ -1,4 +1,4 @@
-# 0.99.2
+# 0.99.3
 
 + address BioC review comments (2024-04-09, Tue, #7, #8, #9)
 + add vignette (2024-03-23, Sat)
