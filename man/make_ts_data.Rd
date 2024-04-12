@@ -2,35 +2,32 @@
 % Please edit documentation in R/geom_treespace.R
 \name{make_ts_data}
 \alias{make_ts_data}
-\title{Make plot data for ggtreespace. 
-This function processes a phylogenetic tree and associated trait data to 
+\title{Make plot data for ggtreespace.
+This function processes a phylogenetic tree and associated trait data to
 create a data frame suitable for plotting with `ggtreespace`.}
 \usage{
 make_ts_data(tr, data)
 }
 \arguments{
-\item{tr}{a tree object. This should be an object of class that is 
-compatible with `ggtree`, typically an object of 
+\item{tr}{a tree object. This should be an object of class that is
+compatible with `ggtree`, typically an object of
 class `phylo` or `treedata`.}
 
-\item{data}{Trait data as a data frame or matrix, where each row 
-represents  a tree tip or node. 
+\item{data}{Trait data as a data frame or matrix, where each row
+represents  a tree tip or node.
 
-  For data matching the number of tips, ancestral traits are reconstructed 
-  for internal nodes. 
-  
-  For data equal to the total number of nodes, values are directly used as 
+  For data matching the number of tips, ancestral traits are reconstructed
+  for internal nodes.
+
+  For data equal to the total number of nodes, values are directly used as
   node coordinates.}
-
-\item{...}{additional parameters for customization with `ggtree`. Please 
-use `?ggtree::ggtree` for more information.}
 }
 \value{
 ggplot object
 }
 \description{
-Make plot data for ggtreespace. 
-This function processes a phylogenetic tree and associated trait data to 
+Make plot data for ggtreespace.
+This function processes a phylogenetic tree and associated trait data to
 create a data frame suitable for plotting with `ggtreespace`.
 }
 \examples{

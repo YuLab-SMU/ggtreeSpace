@@ -7,18 +7,20 @@
 geom_treespace(tr, data, mapping = NULL, ...)
 }
 \arguments{
-\item{tr}{a tree object. This should be an object of class that is 
-compatible with `ggtree`, typically an object of class 
+\item{tr}{a tree object. This should be an object of class that is
+compatible with `ggtree`, typically an object of class
 `phylo` or `treedata`.}
 
-\item{data}{Trait data as a data frame or matrix, where each row 
-represents a tree tip or node. 
+\item{data}{Trait data as a data frame or matrix, where each row
+represents a tree tip or node.
 
   For data matching the number of tips, ancestral traits are reconstructed
-  for internal nodes. 
-  
+  for internal nodes.
+
   For data equal to the total number of nodes, values are directly used as
   node coordinates.}
+
+\item{mapping}{aesthetic mapping}
 
 \item{...}{additional parameters for customization with `geom_tree`. Please
 use `?ggtree::geom_tree` for more information.}
@@ -37,5 +39,6 @@ library(phytools)
 tr <- rtree(10)
 a <- fastBM(tr, nsim = 2)
 
-p <- ggplot() + geom_treespace(tr, a)
+p <- ggplot() +
+  geom_treespace(tr, a)
 }

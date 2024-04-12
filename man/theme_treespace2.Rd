@@ -24,6 +24,6 @@ library(ggtreeSpace)
 tr <- rtree(15)
 td <- fastBM(tr, nsim = 2)
 ggtreespace(tr, td) +
- geom_tippoint() + 
- theme_treespace2()
+  geom_tippoint() +
+  theme_treespace2()
 }
