@@ -33,29 +33,29 @@
 #' @export
 ggtreespace <- function(tr, data, mapping = NULL, ...){
   
-  if(is.null(data))
-    stop("Traits data is required.")
+    if(is.null(data))
+      stop("Traits data is required.")
   
-  if(is.null(colnames(data)) || length(colnames(data)) == 0) {
-    c <- c("x", "y")
-  } else {
-    c <- colnames(data)
-  }
+    if(is.null(colnames(data)) || length(colnames(data)) == 0) {
+      c <- c("x", "y")
+    } else {
+      c <- colnames(data)
+    }
   
-  trd <- make_ts_data(tr, data)
+    trd <- make_ts_data(tr, data)
   
-  p <- ggtree(trd, 
-              mapping = mapping, 
-              layout = 'equal_angle', 
-              ...) +
-    theme_treespace() +
-    labs(x = c[1],
-         y = c[2])
+    p <- ggtree(trd, 
+                mapping = mapping, 
+                layout = 'equal_angle', 
+                ...) +
+      theme_treespace() +
+      labs(x = c[1],
+          y = c[2])
 
-  suppressMessages(p <- p + coord_cartesian())
+    suppressMessages(p <- p + coord_cartesian())
         
-  class(p) <- c("ggtreeSpace", class(p))
+    class(p) <- c("ggtreeSpace", class(p))
 
-  p
+    p
 }
 

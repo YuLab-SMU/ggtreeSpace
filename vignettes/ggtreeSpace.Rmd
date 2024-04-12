@@ -16,25 +16,13 @@ vignette: >
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-options(warn = -1)
-
-library(ggtree)
-library(ggtreeSpace)
-library(phytools)
-library(ggplot2)
-```
-
-# Install package
-
-```{r eval = FALSE}
-if (!require("BiocManager"))
-    install.packages("BiocManager")
-BiocManager::install("ggtreeSpace")
 ```
 
 # Introduction
 
-In the evolving field of evolutionary biology and phylogenetics, visualizing phylomorphospace plays a pivotal role in understanding the diversification of traits across species within a phylogenetic framework. Phylomorphospace is a graphical representation that combines phylogenetic information and morphological (trait) data, mapping the evolutionary trajectories of species in a multidimensional space. However, as research progresses, datasets not only increase in size but also in the complexity of their relationships, which makes the visualization process more challenging and demands advanced visualization solutions.
+In the evolving field of evolutionary biology and phylogenetics, visualizing 
+phylomorphospace plays a pivotal role in understanding the diversification of 
+traits across species within a phylogenetic framework. Phylomorphospace is a graphical representation that combines phylogenetic information and morphological (trait) data, mapping the evolutionary trajectories of species in a multidimensional space. However, as research progresses, datasets not only increase in size but also in the complexity of their relationships, which makes the visualization process more challenging and demands advanced visualization solutions.
 
 Here, we introduce `ggtreeSpace`, a comprehensive visualization tool designed for plotting fully annotated phylomorphospaces using the grammar of graphics, offering researchers with extensive control and customization options for their phylomorphospace plots.
 
@@ -42,15 +30,30 @@ Currently, there are other Bioconductor packages like `phytools` that also suppo
 
 Compares to `phytools`, `ggtreeSpace` focus on crafting 2D phylomorphospaces using the grammar of graphics, enabling the creation of fully annotated visualizations through a layer-by-layer annotation approach. This method provides researchers with a more intuitive and user-friendly experience in plotting, enhancing the logic and visualization clarity. `ggtreeSpace` not only includes unique layers specifically designed for phylomorphospace annotations but also supports layers from the ggplot2 and ggtree communities, offering a wide range of customization options. Additionally, it supports adding phylomorphospace as a graphic layer, enabling the combination of tree-like structures with various types of spaces, such as maps or histological staining images, thus broadening the applications of phylomorphospace analysis.
 
+# Installation
+
+```{install eval = FALSE}
+if (!require("BiocManager"))
+    install.packages("BiocManager")
+BiocManager::install("ggtreeSpace")
+```
+
 ## Demonstration
 
-You can plot basic phylomorphospace easily with the `ggtreespace` function, and add annotation to it with the `+` operator. In this example, we add symbolic point to the tip of phylomorphospace. From the phylomorphospace plot, we can observe the evolutionary trajectories of different species, illustrating how they diverge and adapt in their respective trait dimensions. This visual representation allows us to identify patterns of convergence and divergence among species, highlight instances of adaptive radiation, and so on. 
+```{library, include=TRUE}
+library(ggtree)
+library(ggtreeSpace)
+library(phytools)
+library(ggplot2)
+```
+
+You can plot basic phylomorphospace easily with the `ggtreespace` function, and add annotation to it with the `+` operator. In this example, we add symbolic point to the tip of phylomorphospace. From the phylomorphospace plot, we can observe the evolutionary trajectories of different species, illustrating how they diverge and adapt in their respective trait dimensions. This visual representation allows us to identify patterns of convergence and divergence among species, highlight instances of adaptive radiation, and so on.
 
 ```{r example0, echo=TRUE}
 tr <- rtree(15)
 td <- fastBM(tr, nsim = 2)
 ggtreespace(tr, td) +
-  geom_tippoint()
+    geom_tippoint()
 ```
 
 ggtreeSpace also supports adding phylomorphospace as a graphic layer. This can broaden the applications of phylomorphospace analysis by combine the tree-like structure with different types of spaces.
@@ -59,7 +62,7 @@ ggtreeSpace also supports adding phylomorphospace as a graphic layer. This can b
 tr1 <- rtree(15)
 td1 <- fastBM(tr1, nsim = 2)
 ggplot() +
-  geom_treespace(tr1, td1)
+    geom_treespace(tr1, td1)
 ```
 
 You can also introduce an additional heatmap layer based on your data, adding another dimension of data to better elucidate how this data can affect evolutionary patterns. For example, species may cluster together in the morphospace due to shared environmental adaptations, and we can visualize this through the heatmap. This can provide insights into the underlying mechanisms driving species evolution and diversification.
@@ -67,19 +70,26 @@ You can also introduce an additional heatmap layer based on your data, adding an
 ```{r example2, echo=TRUE}
 tr <- rtree(15)
 td <- fastBM(tr, nsim = 2, bounds = c(0, Inf))
-col <- colorRampPalette(c("#FFFFCC", "#FFEDA0", "#FED976", "#FEB24C", "#FD8D3C", "#FC4E2A", "#E31A1C", "#B10026"))(24)
+col <- colorRampPalette(c("#FFFFCC", 
+                          "#FFEDA0", 
+                          "#FED976", 
+                          "#FEB24C", 
+                          "#FD8D3C", 
+                          "#FC4E2A", 
+                          "#E31A1C", 
+                          "#B10026"))(24)
 tdex <- data.frame(z = fastBM(tr, nsim = 1, bounds = c(0, Inf)),
                    node = 1:15)
 p <- ggtreespace(tr, td)
 p %<+% tdex +
-  geom_tippoint() +
-  geom_tsheatmap(trait = "z", alpha = 0.7 ,resolution = 0.01, bin = 24) +
-  scale_fill_manual(values = col,
-                    guide = guide_colorsteps(show.limits = TRUE)
-  ) +
-  theme_treespace2() +
-  theme(legend.key.height = unit(1, "null"),
-        legend.justification.top = "right")
+    geom_tippoint() +
+    geom_tsheatmap(trait = "z", alpha = 0.7 ,resolution = 0.01, bin = 24) +
+    scale_fill_manual(values = col,
+                      guide = guide_colorsteps(show.limits = TRUE)
+    ) +
+    theme_treespace2() +
+    theme(legend.key.height = unit(1, "null"),
+          legend.justification.top = "right")
   
 ```
 

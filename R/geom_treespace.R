@@ -12,6 +12,7 @@
 #'   
 #'   For data equal to the total number of nodes, values are directly used as
 #'   node coordinates.
+#' @param mapping aesthetic mapping
 #' @param ... additional parameters for customization with `geom_tree`. Please
 #' use `?ggtree::geom_tree` for more information.
 #'
@@ -37,13 +38,13 @@ geom_treespace <- function(tr, data, mapping = NULL, ...)
 #' @importFrom ggtree geom_tree
 make_ts_layer <- function(tr, data, mapping, ...)
 {
-  trd <- make_ts_data(tr, data)
-  layer <- geom_tree(data = trd,
-                     mapping = mapping,
-                     layout = "equal_angle",
-                     ...
-                     )
-  layer
+    trd <- make_ts_data(tr, data)
+    layer <- geom_tree(data = trd,
+                       mapping = mapping,
+                       layout = "equal_angle",
+                       ...
+                       )
+    layer
 }
 
 
@@ -85,47 +86,47 @@ make_ts_layer <- function(tr, data, mapping, ...)
 #' trd <- make_ts_data(tr, a)
 make_ts_data <- function(tr, data)
 {
-  if(is.null(data))
-    stop("Trait data is required.")
+    if(is.null(data))
+      stop("Trait data is required.")
   
-  if (!is.data.frame(data) && !is.matrix(data)) {
-    stop("The input trait data must be a data frame or matrix.")
-  }
+    if (!is.data.frame(data) && !is.matrix(data)) {
+      stop("The input trait data must be a data frame or matrix.")
+    }
   
-  if (nrow(data) == 0) {
-    stop("The input trait data must be a non-empty data frame.")
-  }
+    if (nrow(data) == 0) {
+      stop("The input trait data must be a non-empty data frame.")
+    }
   
-  if (ncol(data) > 2) {
-    warning("Only the first 2 column of the trait data will be used.")
-  } 
+    if (ncol(data) > 2) {
+      warning("Only the first 2 column of the trait data will be used.")
+    } 
   
-  trd <- fortify(tr)
+    trd <- fortify(tr)
   # dat <- cbind(data[, 1], data[, 2])
-  dat <- data[, c(1,2)]
+    dat <- data[, c(1,2)]
   
-  nr <- nrow(dat)
-  nt <- Ntip(tr)
-  nn <- Nnode(tr, internal.only = FALSE)
+    nr <- nrow(dat)
+    nt <- Ntip(tr)
+    nn <- Nnode(tr, internal.only = FALSE)
   
-  if (nr != nt || nr != nn) {
-    stop("The input trait data must be as long as the number of 
-         tips or nodes.")    
-  }
+    if (nr != nt || nr != nn) {
+      stop("The input trait data must be as long as the number of 
+           tips or nodes.")    
+    }
   
-  if (nr == nt) {
-    anc <- apply(dat, 2, fastAnc, tree = as.phylo(tr))
-    dat <- rbind(dat, anc)   
-   }
+    if (nr == nt) {
+      anc <- apply(dat, 2, fastAnc, tree = as.phylo(tr))
+      dat <- rbind(dat, anc)   
+    }
   
-  tsd <- make_tsd(trd, dat)    
-  return(tsd)
+    tsd <- make_tsd(trd, dat)    
+    return(tsd)
 }
 
 make_tsd <- function(trd, coorddata){
-  trd |>
-    select(-c(x, y)) |>
-    mutate(x = coorddata[,1], 
-           y = coorddata[,2]) |>
-    recal_bl()
+    trd |>
+      select(-c(x, y)) |>
+      mutate(x = coorddata[,1], 
+             y = coorddata[,2]) |>
+      recal_bl()
 }
