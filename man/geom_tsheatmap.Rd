@@ -33,24 +33,24 @@ library(ggtreeSpace)
 tr <- rtree(15)
 td <- fastBM(tr, nsim = 2, bounds = c(0, Inf))
 col <- colorRampPalette(c(
-  "#FFFFCC", "#FFEDA0", "#FED976", "#FEB24C",
-  "#FD8D3C", "#FC4E2A", "#E31A1C", "#B10026"
+    "#FFFFCC", "#FFEDA0", "#FED976", "#FEB24C",
+    "#FD8D3C", "#FC4E2A", "#E31A1C", "#B10026"
 ))(24)
 tdex <- data.frame(
-  z = fastBM(tr, nsim = 1, bounds = c(0, Inf)),
-  node = 1:15
+    z = fastBM(tr, nsim = 1, bounds = c(0, Inf)),
+    node = 1:15
 )
 p <- ggtreespace(tr, td)
 p \%<+\% tdex +
-  geom_tippoint() +
-  geom_tsheatmap(trait = "z", alpha = 0.7, resolution = 0.01, bin = 24) +
-  scale_fill_manual(
-    values = col,
-    guide = guide_colorsteps(show.limits = TRUE)
-  ) +
-  theme_treespace2() +
-  theme(
-    legend.key.height = unit(1, "null"),
-    legend.justification.top = "right"
-  )
+    geom_tippoint() +
+    geom_tsheatmap(trait = "z", alpha = 0.7, resolution = 0.01, bin = 24) +
+    scale_fill_manual(
+        values = col,
+        guide = guide_colorsteps(show.limits = TRUE)
+    ) +
+    theme_treespace2() +
+    theme(
+        legend.key.height = unit(1, "null"),
+        legend.justification.top = "right"
+    )
 }

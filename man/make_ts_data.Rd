@@ -16,11 +16,11 @@ class `phylo` or `treedata`.}
 \item{data}{Trait data as a data frame or matrix, where each row
 represents  a tree tip or node.
 
-  For data matching the number of tips, ancestral traits are reconstructed
-  for internal nodes.
+    For data matching the number of tips, ancestral traits are reconstructed
+    for internal nodes.
 
-  For data equal to the total number of nodes, values are directly used as
-  node coordinates.}
+    For data equal to the total number of nodes, values are directly used as
+    node coordinates.}
 }
 \value{
 ggplot object

@@ -18,37 +18,37 @@
 #' tr <- rtree(15)
 #' td <- fastBM(tr, nsim = 2, bounds = c(0, Inf))
 #' col <- colorRampPalette(c(
-#'   "#FFFFCC", "#FFEDA0", "#FED976", "#FEB24C",
-#'   "#FD8D3C", "#FC4E2A", "#E31A1C", "#B10026"
+#'     "#FFFFCC", "#FFEDA0", "#FED976", "#FEB24C",
+#'     "#FD8D3C", "#FC4E2A", "#E31A1C", "#B10026"
 #' ))(24)
 #' tdex <- data.frame(
-#'   z = fastBM(tr, nsim = 1, bounds = c(0, Inf)),
-#'   node = 1:15
+#'     z = fastBM(tr, nsim = 1, bounds = c(0, Inf)),
+#'     node = 1:15
 #' )
 #' p <- ggtreespace(tr, td)
 #' p %<+% tdex +
-#'   geom_tippoint() +
-#'   geom_tsheatmap(trait = "z", alpha = 0.7, resolution = 0.01, bin = 24) +
-#'   scale_fill_manual(
-#'     values = col,
-#'     guide = guide_colorsteps(show.limits = TRUE)
-#'   ) +
-#'   theme_treespace2() +
-#'   theme(
-#'     legend.key.height = unit(1, "null"),
-#'     legend.justification.top = "right"
-#'   )
+#'     geom_tippoint() +
+#'     geom_tsheatmap(trait = "z", alpha = 0.7, resolution = 0.01, bin = 24) +
+#'     scale_fill_manual(
+#'         values = col,
+#'         guide = guide_colorsteps(show.limits = TRUE)
+#'     ) +
+#'     theme_treespace2() +
+#'     theme(
+#'         legend.key.height = unit(1, "null"),
+#'         legend.justification.top = "right"
+#'     )
 #' @export
 geom_tsheatmap <- function(trait, resolution = 0.001, bins = 24, ...) {
-  structure(
-    list(
-      trait = trait,
-      resolution = resolution,
-      bins,
-      ...
-    ),
-    class = "tsheatmap"
-  )
+    structure(
+        list(
+            trait = trait,
+            resolution = resolution,
+            bins,
+            ...
+        ),
+        class = "tsheatmap"
+    )
 }
 
 
@@ -58,17 +58,17 @@ geom_tsheatmap <- function(trait, resolution = 0.001, bins = 24, ...) {
 #' @importFrom ggplot2 after_stat
 #' @importFrom rlang .data
 make_hm_layer <- function(data, trait, resolution, bins, ...) {
-  hmdata <- make_hm_data(data, trait, resolution)
-  layer <- geom_contour_filled(
-    data = hmdata,
-    mapping = aes(
-      x = .data$x, y = .data$y, z = .data$z,
-      fill = after_stat(.data$level)
-    ),
-    bins = bins,
-    ...
-  )
-  layer
+    hmdata <- make_hm_data(data, trait, resolution)
+    layer <- geom_contour_filled(
+        data = hmdata,
+        mapping = aes(
+            x = .data$x, y = .data$y, z = .data$z,
+            fill = after_stat(.data$level)
+        ),
+        bins = bins,
+        ...
+    )
+    layer
 }
 
 
@@ -83,57 +83,58 @@ make_hm_layer <- function(data, trait, resolution, bins, ...) {
 #' @importFrom interp interp
 #' @importFrom stats na.omit
 make_hm_data <- function(data, trait, resolution) {
-  if (is.null(trait)) {
-    stop("Traits data is required.")
-  }
-
-  if (is.data.frame(trait)) {
-    if (!"node" %in% names(trait)) {
-      stop("Trait data should contain a column of corresponding node number")
-    }
-    if (ncol(trait) > 2) {
-      warning("only the first trait provided will be used")
+    if (is.null(trait)) {
+        stop("Traits data is required.")
     }
 
-    traitn <- setdiff(names(trait), "node")[1]
+    if (is.data.frame(trait)) {
+        if (!"node" %in% names(trait)) {
+            stop("Trait data should contain a column of 
+                corresponding node number")
+        }
+        if (ncol(trait) > 2) {
+            warning("only the first trait provided will be used")
+        }
 
-    traitd <- trait |>
-      # select(node, traitn)
-      select(all_of(c('node', traitn)))
+        traitn <- setdiff(names(trait), "node")[1]
 
-    dt <- left_join(data, traitd, by = "node")
+        traitd <- trait |>
+            # select(node, traitn)
+            select(all_of(c("node", traitn)))
 
-    s <- dt |>
-      na.omit() |>
-      select(x = "x", y = "y", z = !!rlang::sym(traitn))
-  } else if (is.character(trait)) {
-    if (!trait %in% colnames(data)) {
-      stop("Plot data do not contain this trait")
+        dt <- left_join(data, traitd, by = "node")
+
+        s <- dt |>
+            na.omit() |>
+            select(x = "x", y = "y", z = !!rlang::sym(traitn))
+    } else if (is.character(trait)) {
+        if (!trait %in% colnames(data)) {
+            stop("Plot data do not contain this trait")
+        }
+        s <- data |>
+            na.omit() |>
+            select(x = "x", y = "y", z = !!rlang::sym(trait))
+    } else {
+        stop("Trait input should be either a data frame with node numbers and
+            trait, or a trait name present in the plot data.")
     }
-    s <- data |>
-      na.omit() |>
-      select(x = "x", y = "y", z = !!rlang::sym(trait))
-  } else {
-    stop("Trait input should be either a data frame with node numbers and
-         trait, or a trait name present in the plot data.")
-  }
 
-  coords <- interp(
-    x = s$x,
-    y = s$y,
-    z = s$z,
-    xo = seq(min(s$x), max(s$x), by = resolution),
-    yo = seq(min(s$y), max(s$y), by = resolution)
-  )
+    coords <- interp(
+        x = s$x,
+        y = s$y,
+        z = s$z,
+        xo = seq(min(s$x), max(s$x), by = resolution),
+        yo = seq(min(s$y), max(s$y), by = resolution)
+    )
 
-  dz <- as.data.frame(coords$z)
-  rownames(dz) <- coords$x
-  colnames(dz) <- coords$y
-  dz <- rownames_to_column(dz, var = "x")
-  df <- dz |>
-    pivot_longer(-1, names_to = "y", values_to = "z")
-  df$x <- as.double(df$x)
-  df$y <- as.double(df$y)
+    dz <- as.data.frame(coords$z)
+    rownames(dz) <- coords$x
+    colnames(dz) <- coords$y
+    dz <- rownames_to_column(dz, var = "x")
+    df <- dz |>
+        pivot_longer(-1, names_to = "y", values_to = "z")
+    df$x <- as.double(df$x)
+    df$y <- as.double(df$y)
 
-  df
+    df
 }

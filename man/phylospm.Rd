@@ -5,14 +5,14 @@
 \title{Plot phylogenetic scatterplot matrix.}
 \usage{
 phylospm(
-  tr,
-  traits = NULL,
-  title = NULL,
-  xAxisLabels = NULL,
-  yAxisLabels = NULL,
-  tr.params = list(size = 1, colors = NULL, panel.grid = TRUE),
-  sptr.params = list(tippoint = TRUE, tiplab = FALSE, labdir = "horizonal", panel.grid =
-    TRUE)
+tr,
+traits = NULL,
+title = NULL,
+xAxisLabels = NULL,
+yAxisLabels = NULL,
+tr.params = list(size = 1, colors = NULL, panel.grid = TRUE),
+sptr.params = list(tippoint = TRUE, tiplab = FALSE, labdir = "horizonal",
+                    panel.grid = TRUE)
 )
 }
 \arguments{
@@ -28,6 +28,7 @@ phylospm(
 
 \item{tr.params}{List of parameters to customize the phylogenetic tree
 with continuous trait mapping as continuous colors on the branch.
+
 Users can add tip point, add tip label, set tip label direction and set
 background gird.}
 
