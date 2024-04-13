@@ -181,7 +181,5 @@ phylospm <- function(tr, traits = NULL, title = NULL,
         yAxisLabels = yAxisLabels,
     )
 
-    class(spm) <- c("phylospm", class(spm))
-
-    spm
+    return(spm)
 }
