@@ -14,11 +14,11 @@ compatible with `ggtree`, typically an object of class
 \item{data}{Trait data as a data frame or matrix, where each row
 represents a tree tip or node.
 
-  For data matching the number of tips, ancestral traits are reconstructed
-  for internal nodes.
+    For data matching the number of tips, ancestral traits are reconstructed
+    for internal nodes.
 
-  For data equal to the total number of nodes, values are directly used as
-  node coordinates.}
+    For data equal to the total number of nodes, values are directly used as
+    node coordinates.}
 
 \item{mapping}{aesthetic mapping}
 
@@ -40,5 +40,5 @@ tr <- rtree(10)
 a <- fastBM(tr, nsim = 2)
 
 p <- ggplot() +
-  geom_treespace(tr, a)
+    geom_treespace(tr, a)
 }

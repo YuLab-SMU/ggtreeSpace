@@ -20,15 +20,15 @@
 #' tr <- rtree(15)
 #' td <- fastBM(tr, nsim = 2)
 #' ggtreespace(tr, td) +
-#'   geom_tippoint() +
-#'   theme_treespace()
+#'     geom_tippoint() +
+#'     theme_treespace()
 theme_treespace <- function(...) {
-  theme_minimal() %+replace%
-    theme(
-      axis.line.x = element_line(arrow = arrow(length = unit(0.3, "cm"))),
-      axis.line.y = element_line(arrow = arrow(length = unit(0.3, "cm"))),
-      ...
-    )
+    theme_minimal() %+replace%
+        theme(
+            axis.line.x = element_line(arrow = arrow(length = unit(0.3, "cm"))),
+            axis.line.y = element_line(arrow = arrow(length = unit(0.3, "cm"))),
+            ...
+        )
 }
 
 
@@ -52,12 +52,12 @@ theme_treespace <- function(...) {
 #' tr <- rtree(15)
 #' td <- fastBM(tr, nsim = 2)
 #' ggtreespace(tr, td) +
-#'   geom_tippoint() +
-#'   theme_treespace2()
+#'     geom_tippoint() +
+#'     theme_treespace2()
 theme_treespace2 <- function(...) {
-  theme_bw() +
-    theme(
-      panel.grid = element_blank(),
-      ...
-    )
+    theme_bw() +
+        theme(
+            panel.grid = element_blank(),
+            ...
+        )
 }
