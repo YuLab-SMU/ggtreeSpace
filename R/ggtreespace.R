@@ -59,5 +59,5 @@ ggtreespace <- function(tr, data, mapping = NULL, ...) {
 
     class(p) <- c("ggtreeSpace", class(p))
 
-    p
+    return(p)
 }

@@ -68,7 +68,7 @@ make_hm_layer <- function(data, trait, resolution, bins, ...) {
         bins = bins,
         ...
     )
-    layer
+    return(layer)
 }
 
 
@@ -136,5 +136,5 @@ make_hm_data <- function(data, trait, resolution) {
     df$x <- as.double(df$x)
     df$y <- as.double(df$y)
 
-    df
+    return(df)
 }
