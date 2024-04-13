@@ -1,6 +1,6 @@
-# 0.99.3
+# 0.99.4
 
-+ address BioC review comments (2024-04-09, Tue, #7, #8, #9)
++ address BioC review comments (2024-04-09, Tue, #7-#10)
 + add vignette (2024-03-23, Sat)
 + fixed issues reported by BiocCheck (2024-03-21, Thu)
 + `phylospm()` (2022-11-22)
