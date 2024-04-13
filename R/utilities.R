@@ -49,7 +49,7 @@ lim_set <- function(p, df) {
             max(df[, 2]) + 0.05 * (max(df[, 2]) - min(df[, 2]))
         )
 
-    p
+    return(p)
 }
 
 
@@ -68,5 +68,5 @@ set.params <- function(input, default) {
     seti <- input[match(seti, names(input))]
     newp <- c(intdi, setd, seti)
 
-    newp
+    return(newp)
 }

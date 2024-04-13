@@ -78,10 +78,8 @@ library(dplyr)
 `ggtreeSpace` serves as a wrapper for `ggtree` package. In the past, when 
 users tried to plot phylomorphospace with `ggtree`, they needed to be 
 familiar with the infrastructure of it and take multiple steps to 
-achieve the most basic effects. And most importantly, previously, users could 
-not add phylomorphospace as a graphical layer directly through `ggtree`, 
-which was not only inconvenient but also limited its usage in more complex 
-analyses.
+achieve the most basic effects. This was not only inconvenient but also 
+limited its usage in more complex analyses.
 
 ```{r example0}
 tr <- rtree(15)

@@ -44,7 +44,7 @@ make_ts_layer <- function(tr, data, mapping, ...) {
         layout = "equal_angle",
         ...
     )
-    layer
+    return(layer)
 }
 
 
@@ -120,15 +120,18 @@ make_ts_data <- function(tr, data) {
     }
 
     tsd <- make_tsd(trd, dat)
+    
     return(tsd)
 }
 
 make_tsd <- function(trd, coorddata) {
-    trd |>
-        select(-all_of(c("x", "y"))) |>
-        mutate(
-            x = coorddata[, 1],
-            y = coorddata[, 2]
-        ) |>
-        recal_bl()
+    trdm <- trd |>
+                select(-all_of(c("x", "y"))) |>
+                mutate(
+                    x = coorddata[, 1],
+                    y = coorddata[, 2]
+                    ) |>
+                recal_bl()
+    
+    return(trdm)
 }
