@@ -1,3 +1,7 @@
+# ggtreeSpace 1.2.0
+
++ Bioconductor RELEASE_3_20 (2024-10-30, Wed)
+
 # ggtreeSpace 1.1.1
 
 + update `geom_treespace()` (2024-09-07)
