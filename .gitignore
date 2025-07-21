@@ -3,4 +3,5 @@
 .Rdata
 .httr-oauth
 .DS_Store
+R/.jukit
 vignettes/ggtreeSpace.html
