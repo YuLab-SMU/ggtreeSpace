@@ -14,6 +14,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{ggplot2}{\code{\link[ggplot2]{ggplot_add}}}
+  \item{ggplot2}{\code{\link[ggplot2:update_ggplot]{ggplot_add}}}
 }}
 
