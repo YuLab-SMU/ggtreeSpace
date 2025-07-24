@@ -1,3 +1,7 @@
+# ggtreeSpace 1.5.1
+
++ fixed R check (2025-07-24, Thu)
+
 # ggtreeSpace 1.4.0
 
 + Bioconductor RELEASE_3_21 (2025-04-17, Thu)

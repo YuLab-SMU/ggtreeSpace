@@ -1,13 +1,16 @@
 ---
 title: "ggtreeSpace-Getting Started"
 shorttitle: "ggtreeSpace"
-author:
-  - Lin Li
-  - Guangchuang Yu
+author: "GuangChuang Yu and Lin Li"
 package: ggtreeSpace
 date: "`r Sys.Date()`"
-output: 
-  BiocStyle::html_document
+output:
+  prettydoc::html_pretty:
+    toc: false
+    theme: cayman
+    highlight: github
+  pdf_document:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{Introduction to ggtreeSpace}
   %\VignetteEngine{knitr::rmarkdown}

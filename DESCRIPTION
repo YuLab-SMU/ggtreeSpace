@@ -1,6 +1,6 @@
 Package: ggtreeSpace
 Title: Visualizing Phylomorphospaces using 'ggtree'
-Version: 1.5.0
+Version: 1.5.1
 Authors@R: c(
        person("Guangchuang", "Yu", 
               email = "guangchuangyu@gmail.com", 
@@ -37,7 +37,7 @@ Suggests:
     knitr,
     prettydoc,
     rmarkdown,
-    BiocStyle,
+    prettydoc,
     testthat (>= 3.0.0)
 License: Artistic-2.0
 biocViews: Annotation, Visualization, Phylogenetics, Software
