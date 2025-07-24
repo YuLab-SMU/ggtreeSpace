@@ -57,7 +57,7 @@ make_ts_layer <- function(tr, trait, mapping, ...) {
 #' @param tr a tree object. This should be an object of class that is
 #'              compatible with `ggtree`, typically an object of
 #'              class `phylo` or `treedata`.
-#' @param data Trait data as a data frame or matrix, where each row
+#' @param trait Trait data as a data frame or matrix, where each row
 #' represents  a tree tip or node.
 #'
 #'     For data matching the number of tips, ancestral traits are reconstructed
@@ -217,7 +217,7 @@ intern_call <- function(data, t){
   
   if (length(trait1) == nt) {
     anc <- apply(traits, 2, fastAnc, tree = as.phylo(data))
-    traits <- rbind(dat, anc)
+    traits <- rbind(traits, anc)
     
     return(traits)
   }

@@ -43,7 +43,7 @@ License: Artistic-2.0
 biocViews: Annotation, Visualization, Phylogenetics, Software
 BugReports: https://github.com/YuLab-SMU/ggtreeSpace/issues 
 URL: https://github.com/YuLab-SMU/ggtreeSpace
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Encoding: UTF-8
 VignetteBuilder: knitr
 Config/testthat/edition: 3

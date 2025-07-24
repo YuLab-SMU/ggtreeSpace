@@ -4,14 +4,14 @@
 \alias{geom_treespace}
 \title{A layer of phylomorphospace}
 \usage{
-geom_treespace(tr, data, mapping = NULL, ...)
+geom_treespace(tr, trait, mapping = NULL, ...)
 }
 \arguments{
 \item{tr}{a tree object. This should be an object of class that is
 compatible with `ggtree`, typically an object of class
 `phylo` or `treedata`.}
 
-\item{data}{Trait data as a data frame or matrix, where each row
+\item{trait}{Trait data as a data frame or matrix, where each row
 represents a tree tip or node.
 
     For data matching the number of tips, ancestral traits are reconstructed
