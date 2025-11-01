@@ -1,10 +1,6 @@
 Package: ggtreeSpace
 Title: Visualizing Phylomorphospaces using 'ggtree'
-<<<<<<< HEAD
-Version: 1.5.1
-=======
 Version: 1.7.0
->>>>>>> upstream/devel
 Authors@R: c(
        person("Guangchuang", "Yu", 
               email = "guangchuangyu@gmail.com", 
