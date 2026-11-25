@@ -2,6 +2,10 @@
 
 + Bioconductor RELEASE_3_24 (2026-11-25, Wed)
 
+# ggtreeSpace 1.10.0
+
++ Bioconductor RELEASE_3_24 (2026-11-25, Wed)
+
 # ggtreeSpace 1.8.0
 
 + Bioconductor RELEASE_3_23 (2026-04-29, Wed)
